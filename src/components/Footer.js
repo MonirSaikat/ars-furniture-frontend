@@ -1,5 +1,6 @@
 import React from 'react';
 import { BsChevronRight } from "react-icons/bs";
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
   const quickLinks = [
@@ -47,14 +48,14 @@ const Footer = () => {
   const renderLinks = (links) =>  {
     return links.map((link) => {
       return (
-        <a
-          href={link.path}
+        <Link
+          to={link.path}
           key={link.path}
           className="flex items-center text-gray-400 text-sm capitalize my-3"
         >
           <BsChevronRight className="mr-2" />
           <span>{link.label}</span>
-        </a>
+        </Link>
       );
     });
   };
@@ -64,10 +65,10 @@ const Footer = () => {
       <iframe
         className="gmap_iframe"
         width="100%"
-        frameborder="0"
+        frameBorder={0}
         scrolling="no"
-        marginheight="0"
-        marginwidth="0"
+        marginHeight={0}
+        marginWidth={0}
         src="https://maps.google.com/maps?width=1215&amp;height=400&amp;hl=en&amp;q=Medical Pakarmatha&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"
       ></iframe>
     </div>
@@ -91,7 +92,11 @@ const Footer = () => {
     </div>
   );
 
-  const renderCopyright = <p className='text-center text-gray-400 my-4'>&copyright; Copyright {new Date().getFullYear()} | <strong>ARS</strong> Furniture</p>;
+  const renderCopyright = <p
+      className='text-center text-gray-400 my-4'>
+        &copy; Copyright {new Date().getFullYear()} |
+        <strong>ARS</strong> Furniture
+      </p>;
 
   return (
     <footer className="bg-gray-900 py-8 pt-10">

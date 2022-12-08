@@ -27,17 +27,8 @@ body {
   border-radius: 30px;
 }
 
-/* .mapouter {
-  position: relative;
-  text-align: right;
-  width: 100%;
-  height: 200px;
+.sidebar-icon svg {
+  font-size: 24px;
+  font-weight: bold;
+  color: black;
 }
-
-.gmap_canvas {
-  width: 100%;
-}
-
-.gmap_iframe {
-  width: 100%;
-} */

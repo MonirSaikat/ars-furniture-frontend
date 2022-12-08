@@ -3,7 +3,7 @@ import Button from '../components/Button';
 
 const Header = () => {
   return (
-    <header className="bg-header md:h-96 py-5 sm:h-full bg-center bg-cover bg-blend-overlay">
+    <header className="bg-header md:h-96 py-10 sm:h-full bg-center bg-cover bg-blend-overlay">
       <div className="container mx-auto text-white flex items-center h-full px-5 md:px-0">
         <div className='max-w-2xl'>
           <h1 className="text-6xl font-semibold">

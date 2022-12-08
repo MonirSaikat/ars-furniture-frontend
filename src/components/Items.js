@@ -1,7 +1,7 @@
 import React from 'react';
 import Button from './Button';
 
-const Items = () => {
+const Items = ({ title, featured}) => {
   const items = [
     {
       label: "Item one",
@@ -48,39 +48,41 @@ const Items = () => {
     },
   ];
 
+  const renderNumbers = featured ? 8 : items.length;
+
+  const renderItems = items
+    .splice(0, renderNumbers)
+    .map((item) => (
+      <div
+        key={item.img}
+        className="hover:bg-gray-100 transition duration-300 ease-in pb-5 group"
+      >
+        <img
+          className="w-full h-52 border"
+          src={item.img}
+          alt={item.label}
+        />
+        <p className="text-xl  my-5">{item.label}</p>
+        <div className="my-5">
+          <p className="text-sm font-light">Start From</p>
+          <p className="font-bold">{item.price} USD</p>
+        </div>
+        <Button
+          className="opacity-0 group-hover:opacity-100 uppercase font-semibold text-sm mx-auto"
+          primary
+        >
+          View details
+        </Button>
+      </div>
+    ));
+
   return (
     <div className="py-8">
       <div className="container mx-auto px-4 md:px-0">
-        <h2 className="section-title">featured</h2>
+        <h2 className="section-title">{title}</h2>
 
         <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 sm:grid-cols-2 gap-5 text-center">
-          {items.map((item) => (
-            <div
-              key={item.img}
-              className="hover:bg-gray-100 transition duration-300 ease-in pb-5 group"
-            >
-              <img
-                className="w-full h-52 border"
-                src={item.img}
-                alt={item.label}
-              />
-              <p className="text-xl  my-5">{item.label}</p>
-              <div className="my-5">
-                <p className="text-sm font-light">
-                  Start From
-                </p>
-                <p className="font-bold">
-                  {item.price} USD
-                </p>
-              </div>
-              <Button
-                className="opacity-0 group-hover:opacity-100 uppercase font-semibold text-sm"
-                primary
-              >
-                View details
-              </Button>
-            </div>
-          ))}
+          {renderItems}
         </div>
       </div>
     </div>
