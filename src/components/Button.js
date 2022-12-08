@@ -3,7 +3,7 @@ import classNames from 'classnames';
 
 const Button = ({ children, rounded, secondary, className, primary, ...rest}) => {
   const classes = classNames(
-    "px-4 py-2 hover:opacity-90 transition",
+    "px-4 py-2 hover:opacity-90 flex items-center justify-center transition",
     className,
     {
       "bg-yellow-400 text-gray-900": primary,
