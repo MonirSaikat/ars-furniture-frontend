@@ -33,7 +33,7 @@ const Navbar = () => {
         >
           <img
             className="w-28 scale-150"
-            src="./images/logo.png"
+            src="/images/logo.png"
             alt="Logo"
           />
         </Link>

@@ -2,13 +2,14 @@ import React, { useEffect, useState } from 'react';
 import Button from '../components/Button';
 import Input from '../components/Input';
 import { FcGoogle } from 'react-icons/fc';
-import { Link, useNavigate } from 'react-router-dom';
+import { CiFacebook } from "react-icons/ci";
+import { Link } from 'react-router-dom';
 import { useAuth } from '../hooks/use-auth';
 import Card from '../components/Card';
 
 const LoginPage = () => {
-  const navigate = useNavigate();
-  const { loginWithGoogle, loggedIn, loginUser } = useAuth();
+  const { loginWithGoogle, loginWithFacebook, loginUser } =
+    useAuth();
   const [data, setData] = useState({
     email: "",
     password: "",
@@ -77,6 +78,15 @@ const LoginPage = () => {
             >
               <FcGoogle className="mr-3" />
               <span>Login with google</span>
+            </Button>
+            <Button
+              type="button"
+              secondary
+              className="mt-4 bg-blue-900 w-full"
+              onClick={loginWithFacebook}
+            >
+              <CiFacebook className="mr-3" />
+              <span>Login with facebook</span>
             </Button>
           </form>
         </Card>

@@ -5,9 +5,10 @@ import { FcGoogle } from "react-icons/fc";
 import { Link } from "react-router-dom";
 import { useAuth } from '../hooks/use-auth';
 import Card from "../components/Card";
+import { CiFacebook } from 'react-icons/ci';
 
 const RegisterPage = () => {
-  const { registerUser } = useAuth();
+  const { registerUser, loginWithGoogle, loginWithFacebook } = useAuth();
   const [data, setData] = useState({
     name: '',
     email: '',
@@ -74,10 +75,20 @@ const RegisterPage = () => {
             <Button
               type="button"
               secondary
+              onClick={loginWithGoogle}
               className="mt-4 w-full"
             >
               <FcGoogle className="mr-3" />
               <span>Login with google</span>
+            </Button>
+            <Button
+              type="button"
+              secondary
+              className="mt-4 bg-blue-900 w-full"
+              onClick={loginWithFacebook}
+            >
+              <CiFacebook className="mr-3" />
+              <span>Login with facebook</span>
             </Button>
           </form>
         </Card>

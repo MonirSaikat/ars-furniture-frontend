@@ -4,7 +4,7 @@ import { Route, Routes } from 'react-router-dom';
 import HomePage from "./pages/HomePage";
 import LoginPage from './pages/LoginPage';
 import RegisterPage from "./pages/RegisterPage";
-import ProductsPage from "./pages/ProductsPage";
+import ProductsPage from "./pages/ProductPage";
 import DashboardPage from './pages/admin/DashboardPage';
 import MainLayout from './components/layouts/MainLayot';
 import DashboardLayout from './components/layouts/DashboardLayout';
@@ -14,17 +14,23 @@ import OrdersPage from './pages/admin/OrdersPage';
 import Private from './pages/Private';
 import ReviewPage from './pages/admin/ReviewPage';
 import ProfilePage from './pages/admin/ProfilePage';
+import ProductDetailsPage from './pages/ProductPage/ProductDetailsPage';
+import ProductsLayout from './components/layouts/ProductsLayout';
 
 const App = () => {
   return (
     <div>
       <Routes>
+        {/* site routes */}
         <Route path="/" element={<MainLayout />}>
           <Route index element={<HomePage />} />
-          <Route
-            path="products"
-            element={<ProductsPage />}
-          />
+          <Route path="products" element={<ProductsLayout />}>
+            <Route index element={<ProductsPage />} />
+            <Route
+              path=":id"
+              element={<ProductDetailsPage />}
+            />
+          </Route>
           <Route path="login" element={<LoginPage />} />
           <Route
             path="register"
@@ -32,6 +38,7 @@ const App = () => {
           />
         </Route>
 
+        {/* Dashboard routes */}
         <Route
           path="/dashboard"
           element={

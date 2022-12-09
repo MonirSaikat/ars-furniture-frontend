@@ -3,25 +3,16 @@ import {
   getAuth,
   signInWithPopup,
   GoogleAuthProvider,
+  FacebookAuthProvider,
   onAuthStateChanged,
   updateProfile,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword
 } from 'firebase/auth';
-import swal from 'sweetalert';
 import { useNavigate } from 'react-router-dom';
+import { handleSuccess, handleError } from "../utils";
 
 export const AuthContext = createContext();
-
-const handleError = (error) => {
-  const errorCode = error.code;
-  const errorMessage = error.message;
-  swal(errorCode, errorMessage, "error");
-};
-
-const handleSuccess = (message) => {
-  swal("Success", message, "success");
-};
 
 const AuthProvider = ({ children }) => {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -53,7 +44,7 @@ const AuthProvider = ({ children }) => {
     };
 
     onAuthStateChanged(auth, handleUser);
-  }, []);
+  }, [auth]);
 
   const registerUser = (name, email, password) => {
     createUserWithEmailAndPassword(auth, email, password)
@@ -93,6 +84,17 @@ const AuthProvider = ({ children }) => {
       });
   };
 
+  const loginWithFacebook = () => {
+    const fbAuthProvider = new FacebookAuthProvider();
+    signInWithPopup(auth, fbAuthProvider)
+      .then((userCredential) => {
+        console.log(userCredential);
+      })
+      .catch(error => {
+        handleError(error);
+      })
+  };
+
   const updateUser = ({name}) => {
     const { currentUser } = auth;
     updateProfile(currentUser, {
@@ -125,6 +127,7 @@ const AuthProvider = ({ children }) => {
     registerUser,
     updateUser,
     loginUser,
+    loginWithFacebook,
   };
 
   return (

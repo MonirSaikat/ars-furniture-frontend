@@ -78,7 +78,7 @@ const Footer = () => {
     <div className="flex mb-3">
       <img
         className="w-16 mb-3 rounded-full"
-        src="images/logo.png"
+        src="/images/logo.png"
         alt="Logo"
       />
       <div className="ml-3">
@@ -125,7 +125,7 @@ const Footer = () => {
             Payments
           </h2>
           <img
-            src="images/payments.jpg"
+            src="/images/payments.jpg"
             alt="Payments for ars furniture"
           />
         </div>
