@@ -12,6 +12,7 @@ import {
 import { useNavigate } from 'react-router-dom';
 import { handleSuccess, handleError } from "../utils";
 import Loader from '../components/Loader';
+import { checkAuth, loginUserByEmailAndPassword, registerUserByEmailAndPassword } from '../services/auth-service';
 
 export const AuthContext = createContext();
 
@@ -23,11 +24,7 @@ const AuthProvider = ({ children }) => {
   const navigate = useNavigate();
 
   const configUser = (user, successMsg) => {
-    setUser({
-      name: user.displayName,
-      email: user.email,
-      accessToken: user.accessToken,
-    });
+    setUser(user);
     setLoggedIn(true);
 
     if (successMsg) handleSuccess(successMsg);
@@ -44,32 +41,44 @@ const AuthProvider = ({ children }) => {
       setCheckingAuth(false);
     };
 
-    onAuthStateChanged(auth, handleUser);
+    // onAuthStateChanged(auth, handleUser);
+    checkAuth()
+      .then(user => {
+        handleUser(user);
+      })
   }, [auth]);
 
-  const registerUser = (name, email, password) => {
-    createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        const user = userCredential.user;
-        updateUser({name: name});
-        configUser(user, 'You are now registered!');
-        navigate("/dashboard");
-      })
-      .catch((error) => {
-        handleError(error);
+  const registerUser = (...props) => {
+    registerUserByEmailAndPassword(...props)
+      .then(user => {
+        console.log(user);
       });
+    // createUserWithEmailAndPassword(auth, email, password)
+    //   .then((userCredential) => {
+    //     const user = userCredential.user;
+    //     updateUser({name: name});
+    //     configUser({name: user.displayName, email: user.email}, 'You are now registered!');
+    //     navigate("/dashboard");
+    //   })
+    //   .catch((error) => {
+    //     handleError(error);
+    //   });
   };
 
   const loginUser = (email, password) => {
-    signInWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        const user = userCredential.user;
-        configUser(user, 'You are now logged in!');
-        navigate('/dashboard');
-      })
-      .catch((error) => {
-        handleError(error);
+    loginUserByEmailAndPassword(email, password)
+      .then(({ user }) => {
+        configUser(user);
       });
+    // signInWithEmailAndPassword(auth, email, password)
+    //   .then((userCredential) => {
+    //     const user = userCredential.user;
+    //     configUser(user, 'You are now logged in!');
+    //     navigate('/dashboard');
+    //   })
+    //   .catch((error) => {
+    //     handleError(error);
+    //   });
   };
 
   const loginWithGoogle = () => {
@@ -77,7 +86,7 @@ const AuthProvider = ({ children }) => {
     signInWithPopup(auth, googleAuthProvider)
       .then((userCredential) => {
         const user = userCredential.user;
-        configUser(user, "You are now logged in!");
+        configUser({name: user.displayName, email: user.email}, "You are now logged in!");
         navigate('/dashboard');
       })
       .catch((error) => {
@@ -118,6 +127,7 @@ const AuthProvider = ({ children }) => {
         setUser(null);
         setLoggedIn(false);
       });
+    localStorage.removeItem('token');
   };
 
   const data = {

@@ -1,6 +1,5 @@
 import axios from 'axios';
-const baseURL =
-  "https://ars-furniture-backend.onrender.com/";
+const baseURL = "https://ars-furniture-backend.onrender.com/";
 
 const api = axios.create({baseURL});
 
@@ -8,7 +7,7 @@ export const adminData = async (method, url, data) => {
   const response = await api({
     method,
     url,
-    data
+    data,
   });
 
   return await response.data;
