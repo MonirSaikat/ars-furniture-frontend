@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Input from "../../components/Input";
 import Button from '../../components/Button';
 import Card from '../../components/Card';
+import { addReivewByUser } from '../../services/review-service';
 
 const ReviewPage = () => {
   const [data, setData] = useState({message:'', rating: ''});
@@ -9,12 +10,14 @@ const ReviewPage = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const formData = {
-      message: data.message,
+      text: data.message,
       rating: data.rating
     };
 
-    // todo:
-    console.log(formData);
+    addReivewByUser(formData)
+      .then(data => {
+        console.log(data);
+      })
 
     setData({
       message: '',

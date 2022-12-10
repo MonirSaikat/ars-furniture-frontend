@@ -39,7 +39,7 @@ const ProductsProvider = ({ children }) => {
     fetching,
     addProduct,
     fetchProducts,
-    deleteProduct
+    deleteProduct,
   }
 
   return (

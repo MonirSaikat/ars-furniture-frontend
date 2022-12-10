@@ -9,8 +9,11 @@ import { FaList, FaPlus } from 'react-icons/fa';
 import { MdOutlineReviews } from "react-icons/md";
 import { CgProfile } from "react-icons/cg";
 import classNames from 'classnames';
+import { useAuth } from '../../hooks/use-auth';
 
 const Sidebar = () => {
+  const { user } = useAuth();
+
   const links = [
     {
       path: "/",
@@ -41,11 +44,13 @@ const Sidebar = () => {
     {
       path: "products",
       label: "Products",
+      admin: true,
       icon: <FaList />,
     },
     {
       path: "products/add",
       label: "Add Product",
+      admin: true,
       icon: <FaPlus />,
     },
   ];
@@ -56,6 +61,9 @@ const Sidebar = () => {
 
   const renderLinks = links.map((link) => {
     const to = link.site ? link.path : `/dashboard/${link.path}`;
+    const forAdmin = link.admin && (!user.isAdmin);
+
+    if(forAdmin) return null;
 
     return (
       <div key={link.path}>
