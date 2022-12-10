@@ -11,6 +11,7 @@ import {
 } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 import { handleSuccess, handleError } from "../utils";
+import Loader from '../components/Loader';
 
 export const AuthContext = createContext();
 
@@ -133,7 +134,7 @@ const AuthProvider = ({ children }) => {
   return (
     <AuthContext.Provider value={data}>
       {/* todo: add an awesome global  */}
-      {checkingAuth ? 'loading...' : children}
+      {checkingAuth ? <Loader /> : children}
     </AuthContext.Provider>
   );
 }
