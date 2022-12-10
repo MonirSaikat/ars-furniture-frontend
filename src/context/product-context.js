@@ -1,13 +1,50 @@
-import { createContext, useState } from 'react';
+import { createContext, useState, useEffect } from 'react';
+import { addNewProduct, deleteProductById, getAllProducts } from '../services/product-service';
 
 export const ProductContext = createContext();
 
-const ProductsProvider = ({ cihldren }) => {
+const ProductsProvider = ({ children }) => {
   const [products, setProducts] = useState([]);
+  const [fetching, setFetching] = useState(false);
+
+  const fetchProducts = () => {
+    getAllProducts().then((prodArr) => {
+      setProducts(prodArr);
+      setFetching(false);
+    });
+  };
+
+  useEffect(() => {
+    setFetching(true);
+    fetchProducts();
+  }, []);
+
+  const addProduct = (product) => {
+    addNewProduct(product)
+      .then(product => {
+        setProducts(prevProducts => [...prevProducts, product]);
+      });
+  };
+
+  const deleteProduct = (id) => {
+    deleteProductById(id)
+      .then(() => {
+        const updatedProducts = products.filter(product => product._id !== id);
+        setProducts(updatedProducts);
+      })
+  };
+
+  const data = {
+    products,
+    fetching,
+    addProduct,
+    fetchProducts,
+    deleteProduct
+  }
 
   return (
-    <ProductContext.Provider value={products}>
-      {cihldren}
+    <ProductContext.Provider value={data}>
+      { children }
     </ProductContext.Provider>
   );
 };

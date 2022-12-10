@@ -1,9 +1,48 @@
 import React from 'react';
+import Button from '../../components/Button';
+import Table from '../../components/Table';
+import { useProduct } from '../../hooks/use-product';
+import { AiOutlineDelete } from "react-icons/ai";
 
 const ProductsPage = () => {
+  const { deleteProduct, products } = useProduct();
+
+  const config = [
+    {
+      label: "Title",
+      render: (item) => item.label,
+      sortable: true,
+    },
+    {
+      label: "Price",
+      render: (item) => item.price,
+    },
+    {
+      label: "Rating",
+      render: (item) => item.rating,
+    },
+    {
+      label: "Image",
+      render: (item) => (
+        <img className="w-20" src={item.imageUrl} />
+      ),
+    },
+    {
+      label: "Action",
+      render: (item) => (
+        <Button
+          danger
+          onClick={() => deleteProduct(item._id)}
+        >
+          <AiOutlineDelete />
+        </Button>
+      ),
+    },
+  ];
+
   return (
     <div>
-      product page
+      <Table data={products} config={config} />
     </div>
   );
 }

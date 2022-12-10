@@ -11,14 +11,14 @@ const ProductsPage = () => {
   useEffect(() => {
     setFetching(true);
     getAllProducts()
-      .then(products => {
+      .then((products) => {
         setProducts(products);
         setFetching(false);
       })
-      .catch(error => {
+      .catch((error) => {
         handleError(error);
         setFetching(false);
-      })
+      });
   }, []);
 
   return (

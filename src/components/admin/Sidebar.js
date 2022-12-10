@@ -37,6 +37,16 @@ const Sidebar = () => {
       label: "Profile",
       icon: <CgProfile />,
     },
+    {
+      path: "products",
+      label: "Products",
+      icon: <CgProfile />,
+    },
+    {
+      path: "products/add",
+      label: "Add Product",
+      icon: <CgProfile />,
+    },
   ];
 
   const linkClasses = classNames(

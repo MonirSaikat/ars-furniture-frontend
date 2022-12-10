@@ -8,12 +8,12 @@ const Items = ({ items = [], title, featured}) => {
     .splice(0, renderNumbers)
     .map((item) => (
       <div
-        key={item.id}
+        key={item._id}
         className="hover:bg-gray-100 transition duration-300 ease-in pb-5 group hover:shadow-md"
       >
         <img
           className="w-full h-52 border"
-          src={item.img}
+          src={item.imageUrl}
           alt={item.label}
         />
         <p className="text-xl  my-5">{item.label}</p>
@@ -26,7 +26,7 @@ const Items = ({ items = [], title, featured}) => {
           link
           className="opacity-0 group-hover:opacity-100 uppercase font-semibold text-sm mx-auto"
           style={{display: 'inline'}}
-          to={`/products/${item.id}`}
+          to={`/products/${item._id}`}
         >
           View details
         </Button>

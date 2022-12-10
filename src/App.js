@@ -16,6 +16,7 @@ import ReviewPage from './pages/admin/ReviewPage';
 import ProfilePage from './pages/admin/ProfilePage';
 import ProductDetailsPage from './pages/ProductPage/ProductDetailsPage';
 import ProductsLayout from './components/layouts/ProductsLayout';
+import AddProductPage from './pages/admin/AddProductPage';
 
 const App = () => {
   return (
@@ -24,7 +25,10 @@ const App = () => {
         {/* site routes */}
         <Route path="/" element={<MainLayout />}>
           <Route index element={<HomePage />} />
-          <Route path="products" element={<ProductsLayout />}>
+          <Route
+            path="products"
+            element={<ProductsLayout />}
+          >
             <Route index element={<ProductsPage />} />
             <Route
               path=":id"
@@ -51,6 +55,10 @@ const App = () => {
           <Route
             path="products"
             element={<AdminProductsPage />}
+          />
+          <Route
+            path="products/add"
+            element={<AddProductPage />}
           />
           <Route
             path="customers"

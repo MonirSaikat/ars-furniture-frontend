@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 const Button = ({ children, rounded, secondary, className, primary, danger, link = false, to, ...rest}) => {
   const classes = classNames(
-    "px-4 py-2 hover:opacity-90 flex items-center justify-center transition",
+    "px-4 py-2 hover:opacity-90 flex items-center justify-center transition disabled:cursor-not-allowed",
     {
       "bg-yellow-400 text-gray-900": primary,
       "bg-gray-900 text-white": secondary,

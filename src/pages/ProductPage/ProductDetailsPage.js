@@ -11,8 +11,6 @@ const ProductDetailsPage = () => {
   const [fetching, setFetching] = useState(false);
   const { id } = useParams();
 
-  console.log(id);
-
   useEffect(() => {
     setFetching(true);
     getProductById(id)
@@ -36,7 +34,7 @@ const ProductDetailsPage = () => {
       <div className="grid grid-cols-1 md:grid-cols-2">
         <div>
           <img
-            src={product.img}
+            src={product.imageUrl}
             alt="Product"
             className="w-full object-contain"
           />
