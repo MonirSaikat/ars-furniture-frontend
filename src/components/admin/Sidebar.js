@@ -5,6 +5,7 @@ import {
   AiOutlineShopping,
   AiOutlineHome,
 } from "react-icons/ai";
+import { FaList, FaPlus } from 'react-icons/fa';
 import { MdOutlineReviews } from "react-icons/md";
 import { CgProfile } from "react-icons/cg";
 import classNames from 'classnames';
@@ -40,12 +41,12 @@ const Sidebar = () => {
     {
       path: "products",
       label: "Products",
-      icon: <CgProfile />,
+      icon: <FaList />,
     },
     {
       path: "products/add",
       label: "Add Product",
-      icon: <CgProfile />,
+      icon: <FaPlus />,
     },
   ];
 
