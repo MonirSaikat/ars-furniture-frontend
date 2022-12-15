@@ -1,33 +1,25 @@
 import axios from 'axios';
 
-// const baseURL = "https://ars-furniture-backend.onrender.com/";
-const baseURL = "http://localhost:5000";
+// export const baseURL = "https://ars-furniture-backend.onrender.com/";
+export const baseURL = "http://localhost:5000";
 
-const axiosIns  = axios.create({
-  baseURL,
-});
+const axiosIns  = axios.create({ baseURL });
+const token = localStorage.getItem('token');
+const config = {};
+const headers = {
+  Authorization: token ? `Bearer ${token}` : ''
+}
 
 export const api = {
   get: async (path, auth = false) => {
-    const config = {};
-    if(auth) {
-      config.headers = {
-         Authorization: `Bearer ${localStorage.getItem('token')}`
-      }
-    };
+    if(auth) config.headers = headers;
 
     const resp = await axiosIns.get(path, config);
     return await resp.data;
   },
 
   post: async (path, data, auth = false) => {
-    const config = {};
-    if(auth) {
-      config.headers = {
-         Authorization: `Bearer ${localStorage.getItem('token')}`
-      }
-    };
-
+    if(auth) config.headers = headers;
     try {
       const resp = await axiosIns.post(path, data , config);
       return await resp.data;

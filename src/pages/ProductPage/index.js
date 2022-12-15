@@ -23,7 +23,7 @@ const ProductsPage = () => {
 
   return (
     <div>
-      <Items items={products} title="Products" />
+      <Items title="Products" />
       {fetching && <Loader />}
     </div>
   );

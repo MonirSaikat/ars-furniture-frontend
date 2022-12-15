@@ -1,37 +1,55 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { getAllProducts } from '../services/product-service';
 import Button from './Button';
+import { handleError } from '../utils';
 
-const Items = ({ items = [], title, featured}) => {
-  const renderNumbers = featured ? 8 : items.length;
-
-  const renderItems = items
-    .splice(0, renderNumbers)
-    .map((item) => (
-      <div
-        key={item._id}
-        className="hover:bg-gray-100 transition duration-300 ease-in pb-5 group hover:shadow-md"
-      >
-        <img
-          className="w-full h-52 border"
-          src={item.imageUrl}
-          alt={item.label}
-        />
-        <p className="text-xl  my-5">{item.label}</p>
-        <div className="my-5">
-          <p className="text-sm font-light">Start From</p>
-          <p className="font-bold">{item.price} USD</p>
-        </div>
-        <Button
-          primary
-          link
-          className="opacity-0 group-hover:opacity-100 uppercase font-semibold text-sm mx-auto"
-          style={{display: 'inline'}}
-          to={`/products/${item._id}`}
-        >
-          View details
-        </Button>
+const RenderItems = ({ products, renderNumbers }) => {
+  return products.map(product => {
+    return <div
+      key={product._id}
+      className="hover:bg-gray-100 transition duration-300 ease-in pb-5 group hover:shadow-md"
+    >
+      <img
+        className="w-full h-52 border"
+        src={product.imageUrl}
+        alt={product.label}
+      />
+      <p className="text-xl  my-5">{product.label}</p>
+      <div className="my-5">
+        <p className="text-sm font-light">Start From</p>
+        <p className="font-bold">{product.price} USD</p>
       </div>
-    ));
+      <Button
+        primary
+        link
+        className="opacity-0 group-hover:opacity-100 uppercase font-semibold text-sm mx-auto"
+        style={{ display: 'inline' }}
+        to={`/products/${product._id}`}
+      >
+        View details
+      </Button>
+    </div>
+  })
+}
+
+const Items = ({ title, featured}) => {
+  const [products, setProducts] = useState([]);
+  const [fetching, setFetching] = useState(false);
+  const [renderNumbers, setRenderNumbers] = useState(1);
+
+  useEffect(() => {
+    setFetching(true);
+    getAllProducts()
+      .then((prodArr) => {
+        setProducts(prodArr);
+        setRenderNumbers(() => featured ? 1 : prodArr.length);
+        setFetching(false);
+      })
+      .catch((error) => {
+        handleError(error);
+        setFetching(false);
+      });
+  }, []);
 
   return (
     <div className="py-8">
@@ -39,7 +57,7 @@ const Items = ({ items = [], title, featured}) => {
         <h2 className="section-title">{title}</h2>
 
         <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 sm:grid-cols-2 gap-5 text-center">
-          {renderItems}
+          <RenderItems products={products} renderNumbers={renderNumbers} />
         </div>
       </div>
     </div>
