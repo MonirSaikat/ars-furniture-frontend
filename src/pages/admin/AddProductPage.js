@@ -4,20 +4,26 @@ import Input from "../../components/Input";
 import Button from "../../components/Button";
 import FileUpload from '../../components/FileUpload';
 import { useProduct } from '../../hooks/use-product';
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
+
+const AddProductDetails = ({ value, setValue }) => {
+  return <ReactQuill theme='snow' value={value} onChange={setValue} />
+};
 
 const AddProductPage = () => {
+  const [details, setDetails] = useState('');
   const [data, setData] = useState({
     label: "",
     rating: '',
     price: '',
-    details: ''
   });
   const [imageUrl, setImageUrl] = useState('');
   const { addProduct } = useProduct();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const dataToSave = {...data, imageUrl};
+    const dataToSave = {...data, details, imageUrl};
     addProduct(dataToSave);
     setData({ label: '', rating: '', price: '', details: '' });
   };
@@ -61,14 +67,16 @@ const AddProductPage = () => {
           className="mb-2"
           value={data.rating}
         />
-        <Input
+
+        {/* <Input
           name="details"
           required
           onChange={handleChange}
           textarea
           placeholder="Enter product details"
           value={data.details}
-        />
+        /> */}
+        <AddProductDetails value={details} onChange={setDetails} />
         <FileUpload onSuccess={(url) => setImageUrl(url)} />
 
         <Button
