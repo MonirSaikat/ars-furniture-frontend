@@ -11,6 +11,7 @@ const Button = ({
   danger,
   link = false,
   to,
+  sm,
   ...rest
 }) => {
   const classes = classNames(
@@ -20,6 +21,7 @@ const Button = ({
       "bg-gray-900 text-white": secondary,
       "bg-red-600 text-gray-100": danger,
       "rounded-md": rounded,
+      "text-xs py-1 px-3": sm
     },
     className
   );
