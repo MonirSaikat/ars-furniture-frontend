@@ -52,7 +52,7 @@ const Navbar = () => {
         <ul className="flex items-center">
           {renderLinks}
           <li className="ml-4">
-            <Button link to={ loggedIn ? "/dashboard" : "/login"} primary rounded>
+            <Button link to={ loggedIn ? "/dashboard" : "/login"} primary>
               {loggedIn ? 'Dashboard' : 'Login'}
             </Button>
           </li>
