@@ -1,6 +1,7 @@
 import React from 'react';
 import Button from '../../components/Button';
 import Table from '../../components/Table';
+import Card from '../../components/Card';
 import { useProduct } from '../../hooks/use-product';
 import { AiOutlineDelete } from "react-icons/ai";
 
@@ -41,9 +42,9 @@ const ProductsPage = () => {
   ];
 
   return (
-    <div>
+    <Card border>
       <Table data={products} config={config} />
-    </div>
+    </Card>
   );
 }
 
