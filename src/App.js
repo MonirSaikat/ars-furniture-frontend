@@ -17,6 +17,7 @@ import ProfilePage from './pages/admin/ProfilePage';
 import ProductDetailsPage from './pages/ProductPage/ProductDetailsPage';
 import ProductsLayout from './components/layouts/ProductsLayout';
 import AddProductPage from './pages/admin/AddProductPage';
+import CartPage from './pages/CartPage';
 
 const App = () => {
   return (
@@ -35,6 +36,7 @@ const App = () => {
               element={<ProductDetailsPage />}
             />
           </Route>
+          <Route path="cart" element={<CartPage />} />
           <Route path="login" element={<LoginPage />} />
           <Route
             path="register"
