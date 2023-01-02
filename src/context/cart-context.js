@@ -17,7 +17,7 @@ export const CartProvider = ({ children }) => {
   const removeFromCart = () => {};
 
   const cartLength = () => {
-    return cartState.length;
+    return !cartState ? 0 : cartState.length;
   };
 
   const data = {
