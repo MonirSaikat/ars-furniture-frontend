@@ -39,12 +39,17 @@ export const CartProvider = ({ children }) => {
     return cartState.some(p => p._id === product._id);
   };
 
+  const getItem = (product) => {
+    return cartState.find(c => c._id === product._id);
+  }
+
   const data = {
     addToCart,
     removeFromCart,
     inCart,
     cartLength,
-    cartState
+    cartState,
+    getItem
   };
 
   return(
