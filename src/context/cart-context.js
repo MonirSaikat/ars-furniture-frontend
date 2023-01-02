@@ -43,7 +43,8 @@ export const CartProvider = ({ children }) => {
     addToCart,
     removeFromCart,
     inCart,
-    cartLength
+    cartLength,
+    cartState
   };
 
   return(
