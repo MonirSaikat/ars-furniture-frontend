@@ -3,7 +3,7 @@ import { useCart } from '../hooks/use-cart';
 import Button from '../components/Button';
 
 const CartItem = ({ cart }) => {
-  const { removeFromCart, getItem, addToCart } = useCart();
+  const { removeFromCart, getItem, updateCart } = useCart();
   const {label, imageUrl} = cart;
   const [quantity, setQuantity] = useState(() => {
     return getItem(cart).quantity;
@@ -18,8 +18,8 @@ const CartItem = ({ cart }) => {
     removeFromCart(cart);
   };
 
-  const updateCart = () => {
-    addToCart({...cart, quantity});
+  const handleUpdateCart = () => {
+    updateCart({...cart, quantity});
   };
 
   return(
@@ -35,7 +35,7 @@ const CartItem = ({ cart }) => {
               value={quantity}
               onChange={handleQuantityChange}
             />
-            <Button sm primary onClick={updateCart}>Update</Button>
+            <Button sm primary onClick={handleUpdateCart}>Update</Button>
             <Button
               sm
               danger
