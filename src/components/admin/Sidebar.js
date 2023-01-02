@@ -13,6 +13,7 @@ import { useAuth } from '../../hooks/use-auth';
 
 const Sidebar = ({ className }) => {
   const { user } = useAuth();
+  console.log(user);
 
   const links = [
     {
@@ -61,9 +62,8 @@ const Sidebar = ({ className }) => {
 
   const renderLinks = links.map((link) => {
     const to = link.site ? link.path : `/dashboard/${link.path}`;
-    const forAdmin = link.admin && (!user.isAdmin);
+    const forAdmin = link.admin;
 
-    if(forAdmin) return null;
 
     return (
       <div key={link.path}>
