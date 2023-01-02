@@ -31,5 +31,11 @@ export const api = {
   put: async (path, data) => {
     const resp = await axiosIns.post(path, data);
     return await resp.data;
+  },
+
+  delete: async(path, auth = false) => {
+    if(auth) config.headers = headers;
+    const resp = await axiosIns.delete(path);
+    return resp.data;
   }
 };
