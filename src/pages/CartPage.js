@@ -61,6 +61,12 @@ const CartPage = () => {
     return <CartItem key={cart._id} cart={cart} />
   });
 
+  const noItemsInCart = (
+    <div className='py-4'>
+      <p className="text-2xl text-center text-gray-600">No items in cart</p>
+    </div>
+  );
+
   const renderFooter = (
     <footer className='flex justify-end'>
       <p className='text-xl'>Subtotal ({cartState.length} items):   ${subtotalPrice}</p>
@@ -75,7 +81,7 @@ const CartPage = () => {
             <p className="text-3xl">Shopping Cart</p>
             <p className='text-2xl font-light'>Price</p>
           </header>
-          {renderCartItems}
+          {cartState.length > 0 ? renderCartItems : noItemsInCart}
           {renderFooter}
         </div>
         <div className='shadow-lg p-3 self-start'>
