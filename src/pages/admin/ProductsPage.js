@@ -42,7 +42,7 @@ const ProductsPage = () => {
   ];
 
   return (
-    <Card border>
+    <Card>
       <Table data={products} config={config} />
     </Card>
   );
