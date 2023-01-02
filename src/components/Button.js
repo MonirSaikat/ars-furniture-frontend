@@ -2,7 +2,17 @@ import React from 'react';
 import classNames from 'classnames';
 import { Link } from 'react-router-dom';
 
-const Button = ({ children, rounded, secondary, className, primary, danger, link = false, to, ...rest}) => {
+const Button = ({
+  children,
+  rounded,
+  secondary,
+  className,
+  primary,
+  danger,
+  link = false,
+  to,
+  ...rest
+}) => {
   const classes = classNames(
     "px-4 py-2 hover:opacity-90 flex items-center justify-center transition disabled:cursor-not-allowed",
     {
