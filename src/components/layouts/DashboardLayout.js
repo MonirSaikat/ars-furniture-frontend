@@ -8,7 +8,7 @@ const DashboardLayout = () => {
   const { user, logout } = useAuth();
 
   const renderTopBar = (
-    <div className="h-16 bg-black flex justify-between pl-4 items-center pr-14">
+    <div className="h-16 bg-gray-900 flex justify-between pl-4 items-center pr-14">
       <Link to="/dashboard">
         <strong className="text-gray-300">
           {user.name}'s Dashboard
@@ -25,9 +25,9 @@ const DashboardLayout = () => {
     <div>
       {renderTopBar}
 
-      <div className="grid grid-cols-6">
+      <div className="">
         <Sidebar />
-        <div className="p-4 ml-48 w-full col-span-5">
+        <div className="ml-48 p-5">
           <Outlet />
         </div>
       </div>
