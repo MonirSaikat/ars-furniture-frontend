@@ -36,17 +36,21 @@ const Navbar = () => {
   });
 
   return (
-    <nav className="bg-gray-900 text-white py-5 px-3">
+    <nav className="bg-gray-900 text-white py-5 px-3 shadow-md">
       <div className="container flex items-center w-full justify-between mx-auto">
         <Link
           to="/"
-          className="w-20 overflow-hidden rounded-full flex items-center justify-center"
+          className=""
         >
-          <img
+          <h1 className='text-3xl font-bold'>
+            <span className='text-yellow-300'>ARS</span>
+            Furniture
+          </h1>
+          {/* <img
             className="w-28 scale-150"
             src="/images/logo.png"
             alt="Logo"
-          />
+          /> */}
         </Link>
 
         <ul className="flex items-center">
