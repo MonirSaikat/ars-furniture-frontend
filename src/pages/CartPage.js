@@ -31,7 +31,7 @@ const CartItem = ({ cart }) => {
           <div className="flex">
             <input
               type="number"
-              className='border-2'
+              className='border-2 p-1'
               value={quantity}
               onChange={handleQuantityChange}
             />
