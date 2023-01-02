@@ -25,7 +25,7 @@ const ProductsPage = () => {
     {
       label: "Image",
       render: (item) => (
-        <img className="w-20" src={item.imageUrl} />
+        <img className="w-20" src={item.imageUrl} alt={item.label} />
       ),
     },
     {

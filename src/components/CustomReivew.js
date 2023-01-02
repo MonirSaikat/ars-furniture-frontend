@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Swiper, SwiperSlide } from "swiper/react";
 import { RiUserSmileLine } from 'react-icons/ri';
-import { RiStarFill, RiStarHalfFill } from "react-icons/ri";
+import { RiStarFill } from "react-icons/ri";
 import { RxStar } from 'react-icons/rx';
 import { Pagination, A11y } from "swiper";
 import "swiper/css";

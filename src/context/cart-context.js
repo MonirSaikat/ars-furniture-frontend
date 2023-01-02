@@ -7,7 +7,7 @@ export const CartProvider = ({ children }) => {
   const [cartState, setCartState] = useState([]);
   const [cart, setCart] = useLocalStorage('cart');
 
-  useEffect(() => setCartState(cart ? cart : []), []);
+  useEffect(() => setCartState(cart ? cart : []), [cart]);
 
   const addToCart = (product) => {
     const alreadyInCart = cartState.find(p => p._id === product._id);
