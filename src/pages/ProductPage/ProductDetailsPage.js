@@ -9,6 +9,7 @@ import Loader from '../../components/Loader';
 const ProductDetailsPage = () => {
   const [product, setProduct] = useState(null);
   const [fetching, setFetching] = useState(false);
+  const [quantity, setQuantity] = useState(1);
   const { id } = useParams();
 
   useEffect(() => {
@@ -28,6 +29,11 @@ const ProductDetailsPage = () => {
 
   if(product === null) return null;
 
+  const handleQuantityChange = (e) => {
+    const value = parseInt(e.target.value) || 1;
+    setQuantity(value);
+  };
+
 
   return (
     <div className="container mx-auto py-8">
@@ -43,10 +49,7 @@ const ProductDetailsPage = () => {
           <h2 className="text-3xl">{product.label}</h2>
           <div className="my-3">
             <p className="text-sm font-light mb-2">
-              Unit price: {product.price}usd
-            </p>
-            <p className="text-sm font-light mb-2">
-              Quntity: 1
+              Unit price: {product.price} usd
             </p>
             <p className="text-sm font-light mb-2">
               Color: N/A
@@ -59,6 +62,8 @@ const ProductDetailsPage = () => {
               min="1"
               placeholder="Quantity"
               className="inline"
+              value={quantity}
+              onChange={handleQuantityChange}
             />
             <Button primary>Add to cart</Button>
           </div>
