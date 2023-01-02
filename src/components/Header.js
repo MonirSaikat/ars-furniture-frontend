@@ -10,7 +10,10 @@ const Header = () => {
             Order your dream decor now
           </h1>
           <p className='my-4 text-sm text-gray-100 font-light'>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolorem eveniet nesciunt labore laborum porro fuga. Ab iste aperiam odit officia harum aspernatur mollitia possimus alias, ex exercitationem saepe, minima excepturi?</p>
-          <Button primary className='mt-5 mx-auto'>Order now</Button>
+          <div className="flex translate-x-0.5 justify-center">
+            <Button primary className='mt-5 mr-2' link to='/products'>Explore</Button>
+            <Button primary className='mt-5' success link to='/login'>Order now</Button>
+          </div>
         </div>
       </div>
     </header>
