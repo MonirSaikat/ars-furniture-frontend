@@ -1,14 +1,10 @@
-import { createContext, useEffect, useState } from 'react';
+import { createContext } from 'react';
 import { useLocalStorage } from '../hooks/use-localstorage';
 
 export const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
   const [cart, setCart] = useLocalStorage('cart');
-
-  useEffect(() => {
-    console.log(cart);
-  }, []);
 
   const addToCart = (product) => {
     const updatedCart = cart ? [...cart, product] : [product];
@@ -17,9 +13,14 @@ export const CartProvider = ({ children }) => {
 
   const removeFromCart = () => {};
 
+  const cartLength = () => {
+    return typeof !cart ? 0 : cart.length;
+  };
+
   const data = {
     addToCart,
-    removeFromCart
+    removeFromCart,
+    cartLength
   };
 
   return(
