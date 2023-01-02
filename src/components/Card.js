@@ -1,9 +1,12 @@
 import classNames from 'classnames';
 import React from 'react';
 
-const Card = ({ children, className }) => {
+const Card = ({ children, className, border }) => {
   const classes = classNames(
-    "border p-5 shadow-lg",
+    "p-5 shadow-lg",
+    {
+      "border": border
+    },
     className
   );
 
