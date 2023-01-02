@@ -35,7 +35,7 @@ const LoginPage = () => {
   return (
     <div>
       <div className="container mx-auto px-4 md:px-0">
-        <Card className="bg-gray-100 p-4 max-w-md mx-auto my-8">
+        <Card className="p-4 max-w-md mx-auto my-8">
           <h2 className="text-2xl text-center mb-4">
             Please Login
           </h2>

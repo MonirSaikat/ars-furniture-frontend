@@ -3,7 +3,7 @@ import React from 'react';
 
 const Card = ({ children, className }) => {
   const classes = classNames(
-    "bg-gray-50 border p-5 shadow-md",
+    "border p-5 shadow-lg",
     className
   );
 
