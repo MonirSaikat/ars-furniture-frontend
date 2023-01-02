@@ -5,12 +5,14 @@ import Input from '../../components/Input';
 import { getProductById } from '../../services/product-service';
 import { handleError } from '../../utils';
 import Loader from '../../components/Loader';
+import { useCart } from '../../hooks/use-cart';
 
 const ProductDetailsPage = () => {
   const [product, setProduct] = useState(null);
   const [fetching, setFetching] = useState(false);
   const [quantity, setQuantity] = useState(1);
   const { id } = useParams();
+  const { addToCart } = useCart();
 
   useEffect(() => {
     setFetching(true);
@@ -34,6 +36,10 @@ const ProductDetailsPage = () => {
     setQuantity(value);
   };
 
+  const handleAddCart = () => {
+    addToCart({...product, quantity});
+    setQuantity(1);
+  };
 
   return (
     <div className="container mx-auto py-8">
@@ -65,7 +71,7 @@ const ProductDetailsPage = () => {
               value={quantity}
               onChange={handleQuantityChange}
             />
-            <Button primary>Add to cart</Button>
+            <Button onClick={handleAddCart} primary>Add to cart</Button>
           </div>
         </div>
       </div>
