@@ -1,10 +1,10 @@
 import React from 'react';
 
 const Table = ({ data, config }) => {
-  const renderRows = data.map((row) => {
-    const renderCells = config.map(column => {
+  const renderRows = data.map((row, idx) => {
+    const renderCells = config.map((column, index) => {
       return (
-        <td className="py-4 px-6" key={column.label}>
+        <td className="py-4 px-6" key={`${column.label}-${index}`}>
           {column.render(row)}
         </td>
       );
@@ -12,7 +12,7 @@ const Table = ({ data, config }) => {
 
     return (
       <tr
-        key={row.label}
+        key={row.label + idx}
         className="bg-white border-b dark:bg-gray-900 dark:border-gray-700"
       >
         {renderCells}
