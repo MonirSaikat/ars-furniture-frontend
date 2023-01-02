@@ -25,6 +25,20 @@ export const CartProvider = ({ children }) => {
     setCart(cartState);
   };
 
+  const updateCart = (productOrCartItem) => {
+    const insideCart = cartState.find(p => p._id === productOrCartItem._id);
+    if (insideCart) {
+      const updated = cartState.map(c => {
+        if (c._id === productOrCartItem._id) {
+          c.quantity = productOrCartItem.quantity;
+        }
+        return c;
+      });
+      setCartState(updated);
+    }
+    setCart(cartState);
+  };
+
   const removeFromCart = (product) => {
     const updated = cartState.filter(c => c._id !== product._id);
     setCartState(updated);
@@ -45,6 +59,7 @@ export const CartProvider = ({ children }) => {
 
   const data = {
     addToCart,
+    updateCart,
     removeFromCart,
     inCart,
     cartLength,
