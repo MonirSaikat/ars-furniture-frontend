@@ -12,6 +12,13 @@ const Navbar = () => {
   }, {
     path: '/products',
     label: 'Products'
+  },
+  {
+    path: '/cart',
+    label: <div>
+      <span>Cart</span>
+      <sup className='w-10 h-10 bg-red-500 text-white p-1 rounded-full mb-2'>10</sup>
+    </div>
   }];
 
   const renderLinks = links.map((link) => {
