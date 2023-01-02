@@ -6,6 +6,7 @@ import { getProductById } from '../../services/product-service';
 import { handleError } from '../../utils';
 import Loader from '../../components/Loader';
 import { useCart } from '../../hooks/use-cart';
+import parse from 'html-react-parser';
 
 const ProductDetailsPage = () => {
   const [product, setProduct] = useState(null);
@@ -57,6 +58,7 @@ const ProductDetailsPage = () => {
             <p className="text-sm font-light mb-2">
               Unit price: {product.price} usd
             </p>
+            {parse(product.details)}
             <p className="text-sm font-light mb-2">
               Color: N/A
             </p>
