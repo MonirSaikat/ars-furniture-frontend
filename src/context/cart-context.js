@@ -35,9 +35,14 @@ export const CartProvider = ({ children }) => {
     return cartState.length;
   };
 
+  const inCart = (product) => {
+    return cartState.some(p => p._id === product._id);
+  };
+
   const data = {
     addToCart,
     removeFromCart,
+    inCart,
     cartLength
   };
 
