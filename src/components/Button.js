@@ -6,6 +6,7 @@ const Button = ({
   children,
   rounded,
   secondary,
+  success,
   className,
   primary,
   danger,
@@ -20,6 +21,7 @@ const Button = ({
       "bg-yellow-400 text-gray-900": primary,
       "bg-gray-900 text-white": secondary,
       "bg-red-600 text-gray-100": danger,
+      "bg-green-600 text-white": success,
       "rounded-md": rounded,
       "text-xs py-1 px-3": sm
     },
