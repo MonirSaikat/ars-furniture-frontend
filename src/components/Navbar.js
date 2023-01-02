@@ -1,10 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../hooks/use-auth';
+import { useCart } from '../hooks/use-cart';
 import Button from './Button';
 
 const Navbar = () => {
   const { loggedIn } = useAuth();
+  const { cartLength } = useCart();
 
   const links = [{
     path: '/',
@@ -17,7 +19,9 @@ const Navbar = () => {
     path: '/cart',
     label: <div>
       <span>Cart</span>
-      <sup className='w-10 h-10 bg-red-500 text-white p-1 rounded-full mb-2'>10</sup>
+      <sup className='w-10 h-10 bg-red-500 text-white p-1 rounded-full mb-2'>
+        {cartLength()}
+      </sup>
     </div>
   }];
 
