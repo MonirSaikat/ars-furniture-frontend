@@ -3,7 +3,7 @@ import React from 'react';
 const OrdersPage = () => {
   return (
     <div>
-      orders page
+      <h2 className="text-center text-2xl">Orders are coming soon :)</h2>
     </div>
   );
 }
