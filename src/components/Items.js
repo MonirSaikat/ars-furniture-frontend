@@ -7,10 +7,10 @@ const RenderItems = ({ products, renderNumbers }) => {
   return products.map(product => {
     return <div
       key={product._id}
-      className="hover:bg-gray-100 transition duration-300 ease-in pb-5 group hover:shadow-md"
+      className="hover:bg-gray-100 transition duration-300 ease-in pb-5 group hover:shadow-md border"
     >
       <img
-        className="w-full h-52 border"
+        className="w-full h-52"
         src={product.imageUrl}
         alt={product.label}
       />
@@ -19,15 +19,24 @@ const RenderItems = ({ products, renderNumbers }) => {
         <p className="text-sm font-light">Start From</p>
         <p className="font-bold">{product.price} USD</p>
       </div>
-      <Button
-        primary
-        link
-        className="opacity-0 group-hover:opacity-100 uppercase font-semibold text-sm mx-auto"
-        style={{ display: 'inline' }}
-        to={`/products/${product._id}`}
-      >
-        View details
-      </Button>
+      <div className="inline-flex justify-center">
+        <Button
+          primary
+          link
+          sm
+          className="uppercase"
+          to={`/products/${product._id}`}
+        >
+          View details
+        </Button>
+        <Button
+          success
+          sm
+          className="uppercase"
+        >
+          add to cart
+        </Button>
+      </div>
     </div>
   })
 }
