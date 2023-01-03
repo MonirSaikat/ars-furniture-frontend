@@ -18,6 +18,7 @@ import ProductDetailsPage from './pages/ProductPage/ProductDetailsPage';
 import ProductsLayout from './components/layouts/ProductsLayout';
 import AddProductPage from './pages/admin/AddProductPage';
 import CartPage from './pages/CartPage';
+import CheckoutPage from './pages/CheckoutPage';
 
 const App = () => {
   return (
@@ -33,6 +34,9 @@ const App = () => {
           <Route path="cart" element={<CartPage />} />
           <Route path="login" element={<LoginPage />} />
           <Route path="register" element={<RegisterPage />} />
+          <Private>
+            <Route path='checkout' element={<CheckoutPage />} />
+          </Private>
         </Route>
 
         {/* Dashboard routes */}
