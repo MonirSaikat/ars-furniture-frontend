@@ -36,7 +36,7 @@ const RenderItems = ({ products, renderNumbers }) => {
           success
           sm
           className="uppercase"
-          onClick={() => addToCart(product)}
+          onClick={() => addToCart({...product, quantity: 1})}
         >
           add to cart
         </Button>
