@@ -2,8 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { getAllProducts } from '../services/product-service';
 import Button from './Button';
 import { handleError } from '../utils';
+import { useCart } from '../hooks/use-cart';
 
 const RenderItems = ({ products, renderNumbers }) => {
+  const { addToCart } = useCart();
+
   return products.map(product => {
     return <div
       key={product._id}
@@ -33,6 +36,7 @@ const RenderItems = ({ products, renderNumbers }) => {
           success
           sm
           className="uppercase"
+          onClick={() => addToCart(product)}
         >
           add to cart
         </Button>
