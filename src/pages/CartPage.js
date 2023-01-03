@@ -86,7 +86,7 @@ const CartPage = () => {
         </div>
         <div className='shadow-lg p-3 self-start'>
           <p className='text-xl mb-2'>Subtotal ({cartState.length} items): $<strong>{subtotalPrice}</strong></p>
-          <Button primary rounded className='w-full font-light'>Proceed to buy</Button>
+          <Button primary link rounded className='w-full font-light' to='/checkout'>Proceed to buy</Button>
         </div>
       </div>
     </div>
