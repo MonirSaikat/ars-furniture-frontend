@@ -26,22 +26,13 @@ const App = () => {
         {/* site routes */}
         <Route path="/" element={<MainLayout />}>
           <Route index element={<HomePage />} />
-          <Route
-            path="products"
-            element={<ProductsLayout />}
-          >
+          <Route path="products" element={<ProductsLayout />} >
             <Route index element={<ProductsPage />} />
-            <Route
-              path=":id"
-              element={<ProductDetailsPage />}
-            />
+            <Route path=":id" element={<ProductDetailsPage />} />
           </Route>
           <Route path="cart" element={<CartPage />} />
           <Route path="login" element={<LoginPage />} />
-          <Route
-            path="register"
-            element={<RegisterPage />}
-          />
+          <Route path="register" element={<RegisterPage />} />
         </Route>
 
         {/* Dashboard routes */}
