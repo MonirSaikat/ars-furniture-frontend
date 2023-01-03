@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useCart } from '../hooks/use-cart';
 import Button from '../components/Button';
+import CartSubtotal from '../components/CartSubtotal';
 
 const CartItem = ({ cart }) => {
   const { removeFromCart, getItem, updateCart } = useCart();
@@ -52,10 +53,7 @@ const CartItem = ({ cart }) => {
 };
 
 const CartPage = () => {
-  const { cartState } = useCart();
-  const subtotalPrice = cartState.reduce((prevValue, currCart) => {
-    return prevValue + (currCart.price * currCart.quantity)
-  }, 0);
+  const { cartState, subtotalPrice } = useCart();
 
   const renderCartItems = cartState.map(cart => {
     return <CartItem key={cart._id} cart={cart} />
@@ -84,10 +82,7 @@ const CartPage = () => {
           {cartState.length > 0 ? renderCartItems : noItemsInCart}
           {renderFooter}
         </div>
-        <div className='shadow-lg p-3 self-start'>
-          <p className='text-xl mb-2'>Subtotal ({cartState.length} items): $<strong>{subtotalPrice}</strong></p>
-          <Button primary link rounded className='w-full font-light' to='/checkout'>Proceed to buy</Button>
-        </div>
+        <CartSubtotal />
       </div>
     </div>
   );
