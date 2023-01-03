@@ -61,6 +61,10 @@ export const CartProvider = ({ children }) => {
     return cartState.find(c => c._id === product._id);
   }
 
+  const subtotalPrice = cartState.reduce((prevValue, currCart) => {
+    return prevValue + (currCart.price * currCart.quantity)
+  }, 0);
+
   const data = {
     addToCart,
     updateCart,
@@ -68,7 +72,8 @@ export const CartProvider = ({ children }) => {
     inCart,
     cartLength,
     cartState,
-    getItem
+    getItem,
+    subtotalPrice
   };
 
   return(
