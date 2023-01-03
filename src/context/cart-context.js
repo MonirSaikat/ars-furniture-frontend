@@ -1,5 +1,6 @@
 import { createContext, useEffect, useState } from 'react';
 import { useLocalStorage } from '../hooks/use-localstorage';
+import { handleSuccess } from '../utils';
 
 export const CartContext = createContext();
 
@@ -22,6 +23,7 @@ export const CartProvider = ({ children }) => {
     } else {
       setCartState([...cartState, product]);
     }
+    handleSuccess('Added to cart');
     setCart(cartState);
   };
 
@@ -36,12 +38,14 @@ export const CartProvider = ({ children }) => {
       });
       setCartState(updated);
     }
+    handleSuccess('Updated quantity');
     setCart(cartState);
   };
 
   const removeFromCart = (product) => {
     const updated = cartState.filter(c => c._id !== product._id);
     setCartState(updated);
+    handleSuccess('Removed from cart');
     setCart(updated);
   };
 
