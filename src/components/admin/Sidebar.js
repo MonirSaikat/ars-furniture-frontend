@@ -13,7 +13,6 @@ import { useAuth } from '../../hooks/use-auth';
 
 const Sidebar = ({ className }) => {
   const { user } = useAuth();
-  console.log(user);
 
   const links = [
     {
