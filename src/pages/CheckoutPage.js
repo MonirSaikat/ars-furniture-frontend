@@ -1,4 +1,4 @@
-const CheckoutPage = ({  }) => {
+const CheckoutPage = () => {
   return(
     <div className="container mx-auto py-3">
       <h1 className="text-center text-4xl">
