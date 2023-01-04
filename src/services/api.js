@@ -15,13 +15,17 @@ const getConfig = (token) => {
 
 export const api = {
   get: async (path, token) => {
-    const resp = await axiosIns.get(path, getConfig(token));
+    const resp = await axiosIns
+      .get(path, getConfig(token));
+
     return await resp.data;
   },
 
   post: async (path, data, token) => {
     try {
-      const resp = await axiosIns.post(path, data , getConfig(token));
+      const resp = await axiosIns
+        .post(path, data , getConfig(token));
+
       return await resp.data;
     } catch (error) {
       return error;
@@ -29,12 +33,16 @@ export const api = {
   },
 
   put: async (path, data, token) => {
-    const resp = await axiosIns.post(path, data, getConfig(token));
+    const resp = await axiosIns
+      .post(path, data, getConfig(token));
+
     return await resp.data;
   },
 
-  delete: async(path) => {
-    const resp = await axiosIns.delete(path, getConfig(token));
+  delete: async(path, token) => {
+    const resp = await axiosIns
+      .delete(path, getConfig(token));
+
     return resp.data;
   }
 };
