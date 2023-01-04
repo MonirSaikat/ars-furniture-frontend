@@ -14,7 +14,7 @@ export const addNewProduct = async (data, token) => {
 };
 
 export const getAllProducts = async () => {
-  const products = await api.get('products', token);
+  const products = await api.get('products');
   return products;
 };
 
