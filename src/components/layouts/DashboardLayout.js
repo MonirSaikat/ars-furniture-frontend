@@ -9,7 +9,7 @@ const DashboardLayout = () => {
 
       <div className="">
         <Sidebar />
-        <div className="ml-48 p-5 pt-20">
+        <div className="ml-12 md:ml-48 p-5 pt-20">
           <Outlet />
         </div>
       </div>
