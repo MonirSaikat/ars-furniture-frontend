@@ -1,19 +1,19 @@
-import { createContext, useEffect, useState } from 'react';
-import { useLocalStorage } from '../hooks/use-localstorage';
-import { handleSuccess } from '../utils';
+import { createContext, useEffect, useState } from "react";
+import { useLocalStorage } from "../hooks/use-localstorage";
+import { handleSuccess } from "../utils";
 
 export const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
   const [cartState, setCartState] = useState([]);
-  const [cart, setCart] = useLocalStorage('cart');
+  const [cart, setCart] = useLocalStorage("cart");
 
   useEffect(() => setCartState(cart ? cart : []), []);
 
   const addToCart = (product) => {
-    const alreadyInCart = cartState.find(p => p._id === product._id);
-    if(alreadyInCart) {
-      const updated = cartState.map(c => {
+    const alreadyInCart = cartState.find((p) => p._id === product._id);
+    if (alreadyInCart) {
+      const updated = cartState.map((c) => {
         if (c._id === product._id) {
           c.quantity += product.quantity;
         }
@@ -23,14 +23,14 @@ export const CartProvider = ({ children }) => {
     } else {
       setCartState([...cartState, product]);
     }
-    handleSuccess('Added to cart');
+    handleSuccess("Added to cart");
     setCart(cartState);
   };
 
   const updateCart = (productOrCartItem) => {
-    const insideCart = cartState.find(p => p._id === productOrCartItem._id);
+    const insideCart = cartState.find((p) => p._id === productOrCartItem._id);
     if (insideCart) {
-      const updated = cartState.map(c => {
+      const updated = cartState.map((c) => {
         if (c._id === productOrCartItem._id) {
           c.quantity = productOrCartItem.quantity;
         }
@@ -38,14 +38,14 @@ export const CartProvider = ({ children }) => {
       });
       setCartState(updated);
     }
-    handleSuccess('Updated quantity');
+    handleSuccess("Updated quantity");
     setCart(cartState);
   };
 
   const removeFromCart = (product) => {
-    const updated = cartState.filter(c => c._id !== product._id);
+    const updated = cartState.filter((c) => c._id !== product._id);
     setCartState(updated);
-    handleSuccess('Removed from cart');
+    handleSuccess("Removed from cart");
     setCart(updated);
   };
 
@@ -54,15 +54,15 @@ export const CartProvider = ({ children }) => {
   };
 
   const inCart = (product) => {
-    return cartState.some(p => p._id === product._id);
+    return cartState.some((p) => p._id === product._id);
   };
 
   const getItem = (product) => {
-    return cartState.find(c => c._id === product._id);
-  }
+    return cartState.find((c) => c._id === product._id);
+  };
 
   const subtotalPrice = cartState.reduce((prevValue, currCart) => {
-    return prevValue + (currCart.price * currCart.quantity)
+    return prevValue + currCart.price * currCart.quantity;
   }, 0);
 
   const data = {
@@ -73,13 +73,8 @@ export const CartProvider = ({ children }) => {
     cartLength,
     cartState,
     getItem,
-    subtotalPrice
+    subtotalPrice,
   };
 
-  return(
-    <CartContext.Provider value={data}>
-      {children}
-    </CartContext.Provider>
-  );
+  return <CartContext.Provider value={data}>{children}</CartContext.Provider>;
 };
-

@@ -1,24 +1,24 @@
-import React from 'react';
-import './firebase-config'; // firebase config
-import { Route, Routes } from 'react-router-dom';
+import React from "react";
+import "./firebase-config"; // firebase config
+import { Route, Routes } from "react-router-dom";
 import HomePage from "./pages/HomePage";
-import LoginPage from './pages/LoginPage';
+import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import ProductsPage from "./pages/ProductPage";
-import DashboardPage from './pages/admin/DashboardPage';
-import MainLayout from './components/layouts/MainLayot';
-import DashboardLayout from './components/layouts/DashboardLayout';
-import AdminProductsPage from './pages/admin/ProductsPage';
+import DashboardPage from "./pages/admin/DashboardPage";
+import MainLayout from "./components/layouts/MainLayot";
+import DashboardLayout from "./components/layouts/DashboardLayout";
+import AdminProductsPage from "./pages/admin/ProductsPage";
 import CustomersPage from "./pages/admin/CustomersPage";
-import OrdersPage from './pages/admin/OrdersPage';
-import Private from './pages/Private';
-import ReviewPage from './pages/admin/ReviewPage';
-import ProfilePage from './pages/admin/ProfilePage';
-import ProductDetailsPage from './pages/ProductPage/ProductDetailsPage';
-import ProductsLayout from './components/layouts/ProductsLayout';
-import AddProductPage from './pages/admin/AddProductPage';
-import CartPage from './pages/CartPage';
-import CheckoutPage from './pages/CheckoutPage';
+import OrdersPage from "./pages/admin/OrdersPage";
+import Private from "./pages/Private";
+import ReviewPage from "./pages/admin/ReviewPage";
+import ProfilePage from "./pages/admin/ProfilePage";
+import ProductDetailsPage from "./pages/ProductPage/ProductDetailsPage";
+import ProductsLayout from "./components/layouts/ProductsLayout";
+import AddProductPage from "./pages/admin/AddProductPage";
+import CartPage from "./pages/CartPage";
+import CheckoutPage from "./pages/CheckoutPage";
 
 const App = () => {
   return (
@@ -27,14 +27,21 @@ const App = () => {
         {/* site routes */}
         <Route path="/" element={<MainLayout />}>
           <Route index element={<HomePage />} />
-          <Route path="products" element={<ProductsLayout />} >
+          <Route path="products" element={<ProductsLayout />}>
             <Route index element={<ProductsPage />} />
             <Route path=":id" element={<ProductDetailsPage />} />
           </Route>
           <Route path="cart" element={<CartPage />} />
           <Route path="login" element={<LoginPage />} />
           <Route path="register" element={<RegisterPage />} />
-          <Route path='checkout' element={<Private><CheckoutPage /></Private>} />
+          <Route
+            path="checkout"
+            element={
+              <Private>
+                <CheckoutPage />
+              </Private>
+            }
+          />
         </Route>
 
         {/* Dashboard routes */}
@@ -47,18 +54,9 @@ const App = () => {
           }
         >
           <Route index element={<DashboardPage />} />
-          <Route
-            path="products"
-            element={<AdminProductsPage />}
-          />
-          <Route
-            path="products/add"
-            element={<AddProductPage />}
-          />
-          <Route
-            path="customers"
-            element={<CustomersPage />}
-          />
+          <Route path="products" element={<AdminProductsPage />} />
+          <Route path="products/add" element={<AddProductPage />} />
+          <Route path="customers" element={<CustomersPage />} />
           <Route path="orders" element={<OrdersPage />} />
           <Route path="review" element={<ReviewPage />} />
           <Route path="profile" element={<ProfilePage />} />
@@ -66,6 +64,6 @@ const App = () => {
       </Routes>
     </div>
   );
-}
+};
 
 export default App;

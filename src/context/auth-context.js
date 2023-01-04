@@ -4,24 +4,24 @@ import {
   GoogleAuthProvider,
   FacebookAuthProvider,
   updateProfile,
-} from 'firebase/auth';
-import { createContext, useEffect, useState } from 'react';
-import { useLocalStorage } from '../hooks/use-localstorage';
-import { useNavigate } from 'react-router-dom';
+} from "firebase/auth";
+import { createContext, useEffect, useState } from "react";
+import { useLocalStorage } from "../hooks/use-localstorage";
+import { useNavigate } from "react-router-dom";
 import { handleSuccess, handleError } from "../utils";
-import Loader from '../components/Loader';
+import Loader from "../components/Loader";
 import {
   checkAuth,
   loginUserByEmailAndPassword,
-  registerUserByEmailAndPassword
-} from '../services/auth-service';
+  registerUserByEmailAndPassword,
+} from "../services/auth-service";
 
 export const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
   const [loggedIn, setLoggedIn] = useState(false);
   const [checkingAuth, setCheckingAuth] = useState(true);
-  const [token, setToken] = useLocalStorage('token');
+  const [token, setToken] = useLocalStorage("token");
   const [user, setUser] = useState(null);
   const auth = getAuth();
   const navigate = useNavigate();
@@ -44,26 +44,23 @@ const AuthProvider = ({ children }) => {
       setCheckingAuth(false);
     };
 
-    checkAuth(token)
-      .then(user => {
-        handleUser(user);
-      })
+    checkAuth(token).then((user) => {
+      handleUser(user);
+    });
   }, [auth, token]);
 
   const registerUser = (...props) => {
-    registerUserByEmailAndPassword(...props)
-      .then(({user, token}) => {
-        configUser(user);
-        setToken(token);
-      });
+    registerUserByEmailAndPassword(...props).then(({ user, token }) => {
+      configUser(user);
+      setToken(token);
+    });
   };
 
   const loginUser = (email, password) => {
-    loginUserByEmailAndPassword(email, password)
-      .then(({ user, token }) => {
-        configUser(user);
-        setToken(token);
-      });
+    loginUserByEmailAndPassword(email, password).then(({ user, token }) => {
+      configUser(user);
+      setToken(token);
+    });
   };
 
   const loginWithGoogle = () => {
@@ -74,12 +71,12 @@ const AuthProvider = ({ children }) => {
         configUser(
           {
             name: user.displayName,
-            email: user.email
+            email: user.email,
           },
           "You are now logged in!"
         );
 
-        navigate('/dashboard');
+        navigate("/dashboard");
       })
       .catch((error) => {
         handleError(error);
@@ -89,36 +86,32 @@ const AuthProvider = ({ children }) => {
   const loginWithFacebook = () => {
     const fbAuthProvider = new FacebookAuthProvider();
     signInWithPopup(auth, fbAuthProvider)
-      .then((userCredential) => {
-      })
-      .catch(error => {
+      .then((userCredential) => {})
+      .catch((error) => {
         handleError(error);
-      })
+      });
   };
 
-  const updateUser = ({name}) => {
+  const updateUser = ({ name }) => {
     const { currentUser } = auth;
     updateProfile(currentUser, {
       displayName: name,
     })
       .then(() => {
-        setUser(prevUser => ({...prevUser, name}));
-        handleSuccess('Profile updated');
+        setUser((prevUser) => ({ ...prevUser, name }));
+        handleSuccess("Profile updated");
       })
       .catch((error) => {
         handleError(error);
       });
-
   };
 
   const logout = () => {
-    auth
-      .signOut()
-      .then(() => {
-        setUser(null);
-        setLoggedIn(false);
-      });
-    localStorage.removeItem('token');
+    auth.signOut().then(() => {
+      setUser(null);
+      setLoggedIn(false);
+    });
+    localStorage.removeItem("token");
   };
 
   const data = {
@@ -130,7 +123,7 @@ const AuthProvider = ({ children }) => {
     updateUser,
     loginUser,
     loginWithFacebook,
-    token
+    token,
   };
 
   return (
@@ -138,6 +131,6 @@ const AuthProvider = ({ children }) => {
       {checkingAuth ? <Loader /> : children}
     </AuthContext.Provider>
   );
-}
+};
 
 export default AuthProvider;

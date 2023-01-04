@@ -1,15 +1,14 @@
-import React, { useEffect, useState } from 'react';
-import Button from '../components/Button';
-import Input from '../components/Input';
-import { FcGoogle } from 'react-icons/fc';
+import React, { useEffect, useState } from "react";
+import Button from "../components/Button";
+import Input from "../components/Input";
+import { FcGoogle } from "react-icons/fc";
 import { CiFacebook } from "react-icons/ci";
-import { Link } from 'react-router-dom';
-import { useAuth } from '../hooks/use-auth';
-import Card from '../components/Card';
+import { Link } from "react-router-dom";
+import { useAuth } from "../hooks/use-auth";
+import Card from "../components/Card";
 
 const LoginPage = () => {
-  const { loginWithGoogle, loginWithFacebook, loginUser } =
-    useAuth();
+  const { loginWithGoogle, loginWithFacebook, loginUser } = useAuth();
   const [data, setData] = useState({
     email: "",
     password: "",
@@ -36,9 +35,7 @@ const LoginPage = () => {
     <div>
       <div className="container mx-auto px-4 md:px-0">
         <Card className="p-4 max-w-md mx-auto my-8">
-          <h2 className="text-2xl text-center mb-4">
-            Please Login
-          </h2>
+          <h2 className="text-2xl text-center mb-4">Please Login</h2>
 
           <form action="" onSubmit={handleSubmit}>
             <Input
@@ -63,10 +60,7 @@ const LoginPage = () => {
             </Button>
             <p className="mt-2">
               Not a user ?{" "}
-              <Link
-                className="text-blue-600 hover:underline"
-                to="/register"
-              >
+              <Link className="text-blue-600 hover:underline" to="/register">
                 Register
               </Link>{" "}
             </p>
@@ -93,6 +87,6 @@ const LoginPage = () => {
       </div>
     </div>
   );
-}
+};
 
 export default LoginPage;

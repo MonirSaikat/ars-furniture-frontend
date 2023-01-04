@@ -1,8 +1,8 @@
-import React from 'react';
-import Button from '../../components/Button';
-import Table from '../../components/Table';
-import Card from '../../components/Card';
-import { useProduct } from '../../hooks/use-product';
+import React from "react";
+import Button from "../../components/Button";
+import Table from "../../components/Table";
+import Card from "../../components/Card";
+import { useProduct } from "../../hooks/use-product";
 import { AiOutlineDelete } from "react-icons/ai";
 
 const ProductsPage = () => {
@@ -31,10 +31,7 @@ const ProductsPage = () => {
     {
       label: "Action",
       render: (item) => (
-        <Button
-          danger
-          onClick={() => deleteProduct(item._id)}
-        >
+        <Button danger onClick={() => deleteProduct(item._id)}>
           <AiOutlineDelete />
         </Button>
       ),
@@ -46,6 +43,6 @@ const ProductsPage = () => {
       <Table data={products} config={config} />
     </Card>
   );
-}
+};
 
 export default ProductsPage;

@@ -1,46 +1,47 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { RiUserSmileLine } from 'react-icons/ri';
+import { RiUserSmileLine } from "react-icons/ri";
 import { RiStarFill } from "react-icons/ri";
-import { RxStar } from 'react-icons/rx';
+import { RxStar } from "react-icons/rx";
 import { Pagination, A11y } from "swiper";
 import "swiper/css";
 import "swiper/css/pagination";
-import { fetchReviews } from '../services/review-service';
+import { fetchReviews } from "../services/review-service";
 
 const CustomPagination = () => {
-  return <Pagination className='mt-5' />
-}
+  return <Pagination className="mt-5" />;
+};
 
 const CustomReivew = () => {
   const [reviews, setReviews] = useState([]);
 
   useEffect(() => {
-    fetchReviews()
-      .then(data => {
-        setReviews(data)
-      });
+    fetchReviews().then((data) => {
+      setReviews(data);
+    });
   }, []);
 
   const renderReviews = reviews?.map((review) => {
-    return <SwiperSlide className="p-5 bg-gray-100 shadow-md" key={review._id}>
-      <div className="flex items-center mb-3">
-        <RiUserSmileLine className="text-4xl mr-2" />
-        <div>
-          <h2 className="text-2xl">{review.user.name}</h2>
-          <span className="flex">
-            <RiStarFill fill="#FFBF00" />
-            <RiStarFill fill="#FFBF00" />
-            <RiStarFill fill="#FFBF00" />
-            <RiStarFill fill="#FFBF00" />
-            <RxStar />
-            {/* <RiStarHalfFill fill="#FFBF00" /> */}
-          </span>
+    return (
+      <SwiperSlide className="p-5 bg-gray-100 shadow-md" key={review._id}>
+        <div className="flex items-center mb-3">
+          <RiUserSmileLine className="text-4xl mr-2" />
+          <div>
+            <h2 className="text-2xl">{review.user.name}</h2>
+            <span className="flex">
+              <RiStarFill fill="#FFBF00" />
+              <RiStarFill fill="#FFBF00" />
+              <RiStarFill fill="#FFBF00" />
+              <RiStarFill fill="#FFBF00" />
+              <RxStar />
+              {/* <RiStarHalfFill fill="#FFBF00" /> */}
+            </span>
+          </div>
         </div>
-      </div>
 
-      <p>{review.text}</p>
-    </SwiperSlide>
+        <p>{review.text}</p>
+      </SwiperSlide>
+    );
   });
 
   return (
@@ -68,6 +69,6 @@ const CustomReivew = () => {
       </div>
     </div>
   );
-}
+};
 
 export default CustomReivew;

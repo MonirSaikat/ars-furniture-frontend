@@ -1,12 +1,11 @@
-import { handleError, handleSuccess } from '../utils';
-import { api } from './api';
+import { handleError, handleSuccess } from "../utils";
+import { api } from "./api";
 
 export const addNewProduct = async (data, token) => {
   try {
-    const product = await api.
-      post('/products', {...data}, token);
+    const product = await api.post("/products", { ...data }, token);
 
-    handleSuccess('Product Added');
+    handleSuccess("Product Added");
     return product;
   } catch (error) {
     handleError(error);
@@ -14,7 +13,7 @@ export const addNewProduct = async (data, token) => {
 };
 
 export const getAllProducts = async () => {
-  const products = await api.get('products');
+  const products = await api.get("products");
   return products;
 };
 
@@ -25,7 +24,7 @@ export const getProductById = async (id) => {
 export const deleteProductById = async (id, token) => {
   try {
     await api.delete(`products/${id}`, token);
-    handleSuccess('Product deleted');
+    handleSuccess("Product deleted");
   } catch (error) {
     handleError(error);
   }

@@ -1,13 +1,15 @@
-import React from 'react';
-import { Link, Outlet, useParams } from 'react-router-dom';
+import React from "react";
+import { Link, Outlet, useParams } from "react-router-dom";
 
 const ProductsLayout = () => {
   const params = useParams();
 
   const renderBredCumbs = (
     <h2 className="text-white text-xl font-semibold">
-      <Link className='underline' to="/products">Products</Link>
-      {params.id ? ' / Product Details' : null}
+      <Link className="underline" to="/products">
+        Products
+      </Link>
+      {params.id ? " / Product Details" : null}
     </h2>
   );
 
@@ -19,6 +21,6 @@ const ProductsLayout = () => {
       <Outlet />
     </div>
   );
-}
+};
 
 export default ProductsLayout;

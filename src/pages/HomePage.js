@@ -1,8 +1,8 @@
-import React from 'react';
-import CustomReivew from '../components/CustomReivew';
-import Header from '../components/Header';
-import Items from '../components/Items';
-import TimeLine from '../components/TimeLine';
+import React from "react";
+import CustomReivew from "../components/CustomReivew";
+import Header from "../components/Header";
+import Items from "../components/Items";
+import TimeLine from "../components/TimeLine";
 
 const HomePage = () => {
   return (
@@ -13,6 +13,6 @@ const HomePage = () => {
       <CustomReivew />
     </div>
   );
-}
+};
 
 export default HomePage;

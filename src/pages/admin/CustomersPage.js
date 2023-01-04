@@ -1,11 +1,7 @@
-import React from 'react';
+import React from "react";
 
 const CustomersPage = () => {
-  return (
-    <div>
-      customers page
-    </div>
-  );
-}
+  return <div>customers page</div>;
+};
 
 export default CustomersPage;

@@ -3,28 +3,28 @@ import Button from "../components/Button";
 import Input from "../components/Input";
 import { FcGoogle } from "react-icons/fc";
 import { Link } from "react-router-dom";
-import { useAuth } from '../hooks/use-auth';
+import { useAuth } from "../hooks/use-auth";
 import Card from "../components/Card";
-import { CiFacebook } from 'react-icons/ci';
+import { CiFacebook } from "react-icons/ci";
 
 const RegisterPage = () => {
   const { registerUser, loginWithGoogle, loginWithFacebook } = useAuth();
   const [data, setData] = useState({
-    name: '',
-    email: '',
-    password: '',
+    name: "",
+    email: "",
+    password: "",
   });
 
   const handleSubmit = (e) => {
     e.preventDefault();
     registerUser(data.name, data.email, data.password);
-    setData({name: '', email: '', password: ''});
+    setData({ name: "", email: "", password: "" });
   };
 
   const handleChange = (e) => {
-    setData(prevData => ({
+    setData((prevData) => ({
       ...prevData,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     }));
   };
 
@@ -32,9 +32,7 @@ const RegisterPage = () => {
     <div>
       <div className="container mx-auto px-4 md:px-0">
         <Card className="p-4 max-w-md mx-auto my-8">
-          <h2 className="text-2xl text-center mb-4">
-            Please register
-          </h2>
+          <h2 className="text-2xl text-center mb-4">Please register</h2>
 
           <form onSubmit={handleSubmit} action="">
             <Input
@@ -65,10 +63,7 @@ const RegisterPage = () => {
             </Button>
             <p className="mt-2">
               Already an user?
-              <Link
-                className="text-blue-600 hover:underline ml-2"
-                to="/login"
-              >
+              <Link className="text-blue-600 hover:underline ml-2" to="/login">
                 Login
               </Link>
             </p>

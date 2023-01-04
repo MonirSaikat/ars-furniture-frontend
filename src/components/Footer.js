@@ -1,6 +1,6 @@
-import React from 'react';
+import React from "react";
 import { BsChevronRight } from "react-icons/bs";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   const quickLinks = [
@@ -45,7 +45,7 @@ const Footer = () => {
     },
   ];
 
-  const renderLinks = (links) =>  {
+  const renderLinks = (links) => {
     return links.map((link) => {
       return (
         <Link
@@ -92,11 +92,12 @@ const Footer = () => {
     </div>
   );
 
-  const renderCopyright = <p
-      className='text-center text-gray-400 my-4'>
-        &copy; Copyright {new Date().getFullYear()} |
-        <strong>ARS</strong> Furniture
-      </p>;
+  const renderCopyright = (
+    <p className="text-center text-gray-400 my-4">
+      &copy; Copyright {new Date().getFullYear()} |<strong>ARS</strong>{" "}
+      Furniture
+    </p>
+  );
 
   return (
     <footer className="bg-gray-900 py-8 pt-10">
@@ -107,32 +108,23 @@ const Footer = () => {
         </div>
 
         <div>
-          <h2 className="text-3xl text-white mb-4">
-            Useful Links
-          </h2>
+          <h2 className="text-3xl text-white mb-4">Useful Links</h2>
           {renderLinks(quickLinks)}
         </div>
 
         <div>
-          <h2 className="text-3xl text-white mb-4">
-            More Links
-          </h2>
+          <h2 className="text-3xl text-white mb-4">More Links</h2>
           {renderLinks(impLinks)}
         </div>
 
         <div>
-          <h2 className="text-3xl text-white mb-4">
-            Payments
-          </h2>
-          <img
-            src="/images/payments.jpg"
-            alt="Payments for ars furniture"
-          />
+          <h2 className="text-3xl text-white mb-4">Payments</h2>
+          <img src="/images/payments.jpg" alt="Payments for ars furniture" />
         </div>
       </div>
       {renderCopyright}
     </footer>
   );
-}
+};
 
 export default Footer;

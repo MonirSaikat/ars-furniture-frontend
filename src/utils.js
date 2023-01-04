@@ -1,7 +1,7 @@
-import swal from 'sweetalert';
+import swal from "sweetalert";
 
 export const handleError = (error) => {
-  const errorCode = error.code || 'Error';
+  const errorCode = error.code || "Error";
   const errorMessage = error.message;
   swal(errorCode, errorMessage, "error");
 };

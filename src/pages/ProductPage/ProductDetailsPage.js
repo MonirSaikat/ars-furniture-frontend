@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import Button from "../../components/Button";
-import Input from '../../components/Input';
-import { getProductById } from '../../services/product-service';
-import { handleError } from '../../utils';
-import Loader from '../../components/Loader';
-import { useCart } from '../../hooks/use-cart';
-import parse from 'html-react-parser';
+import Input from "../../components/Input";
+import { getProductById } from "../../services/product-service";
+import { handleError } from "../../utils";
+import Loader from "../../components/Loader";
+import { useCart } from "../../hooks/use-cart";
+import parse from "html-react-parser";
 
 const ProductDetailsPage = () => {
   const [product, setProduct] = useState(null);
@@ -28,9 +28,9 @@ const ProductDetailsPage = () => {
       });
   }, [id]);
 
-  if(fetching) return <Loader />;
+  if (fetching) return <Loader />;
 
-  if(product === null) return null;
+  if (product === null) return null;
 
   const handleQuantityChange = (e) => {
     const value = parseInt(e.target.value) || 1;
@@ -38,7 +38,7 @@ const ProductDetailsPage = () => {
   };
 
   const handleAddCart = () => {
-    addToCart({...product, quantity});
+    addToCart({ ...product, quantity });
     setQuantity(1);
   };
 
@@ -59,9 +59,7 @@ const ProductDetailsPage = () => {
               Unit price: {product.price} usd
             </p>
             {parse(product.details)}
-            <p className="text-sm font-light mb-2">
-              Color: N/A
-            </p>
+            <p className="text-sm font-light mb-2">Color: N/A</p>
           </div>
 
           <div className="grid grid-cols-5">
@@ -73,12 +71,14 @@ const ProductDetailsPage = () => {
               value={quantity}
               onChange={handleQuantityChange}
             />
-            <Button onClick={handleAddCart} primary>Add to cart</Button>
+            <Button onClick={handleAddCart} primary>
+              Add to cart
+            </Button>
           </div>
         </div>
       </div>
     </div>
   );
-}
+};
 
 export default ProductDetailsPage;

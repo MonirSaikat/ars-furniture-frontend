@@ -1,6 +1,6 @@
-import React from 'react';
-import classNames from 'classnames';
-import { Link } from 'react-router-dom';
+import React from "react";
+import classNames from "classnames";
+import { Link } from "react-router-dom";
 
 const Button = ({
   children,
@@ -23,7 +23,7 @@ const Button = ({
       "bg-red-600 text-gray-100": danger,
       "bg-green-600 text-white": success,
       "rounded-md": rounded,
-      "text-xs py-1 px-3": sm
+      "text-xs py-1 px-3": sm,
     },
     className
   );

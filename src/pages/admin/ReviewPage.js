@@ -1,27 +1,26 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import Input from "../../components/Input";
-import Button from '../../components/Button';
-import Card from '../../components/Card';
-import { addReivewByUser } from '../../services/review-service';
+import Button from "../../components/Button";
+import Card from "../../components/Card";
+import { addReivewByUser } from "../../services/review-service";
 
 const ReviewPage = () => {
-  const [data, setData] = useState({message:'', rating: ''});
+  const [data, setData] = useState({ message: "", rating: "" });
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const formData = {
       text: data.message,
-      rating: data.rating
+      rating: data.rating,
     };
 
-    addReivewByUser(formData)
-      .then(data => {
-        // console.log(data);
-      })
+    addReivewByUser(formData).then((data) => {
+      // console.log(data);
+    });
 
     setData({
-      message: '',
-      rating: ''
+      message: "",
+      rating: "",
     });
   };
 
@@ -34,9 +33,7 @@ const ReviewPage = () => {
 
   return (
     <Card>
-      <h1 className="text-4xl mb-3 text-center">
-        Add a review
-      </h1>
+      <h1 className="text-4xl mb-3 text-center">Add a review</h1>
       <form onSubmit={handleSubmit}>
         <Input
           required
@@ -65,6 +62,6 @@ const ReviewPage = () => {
       </form>
     </Card>
   );
-}
+};
 
 export default ReviewPage;

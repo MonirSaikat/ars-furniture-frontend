@@ -1,31 +1,31 @@
-import React, {useState} from 'react';
+import React, { useState } from "react";
 import Card from "../../components/Card";
 import Input from "../../components/Input";
 import Button from "../../components/Button";
-import FileUpload from '../../components/FileUpload';
-import { useProduct } from '../../hooks/use-product';
-import ReactQuill from 'react-quill';
-import 'react-quill/dist/quill.snow.css';
+import FileUpload from "../../components/FileUpload";
+import { useProduct } from "../../hooks/use-product";
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
 
 const AddProductDetails = ({ value, setValue }) => {
-  return <ReactQuill theme='snow' value={value} onChange={setValue} />
+  return <ReactQuill theme="snow" value={value} onChange={setValue} />;
 };
 
 const AddProductPage = () => {
-  const [details, setDetails] = useState('');
+  const [details, setDetails] = useState("");
   const [data, setData] = useState({
     label: "",
-    rating: '',
-    price: '',
+    rating: "",
+    price: "",
   });
-  const [imageUrl, setImageUrl] = useState('');
+  const [imageUrl, setImageUrl] = useState("");
   const { addProduct } = useProduct();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const dataToSave = {...data, details, imageUrl};
+    const dataToSave = { ...data, details, imageUrl };
     addProduct(dataToSave);
-    setData({ label: '', rating: '', price: '', details: '' });
+    setData({ label: "", rating: "", price: "", details: "" });
   };
 
   const handleChange = (e) => {
@@ -37,9 +37,7 @@ const AddProductPage = () => {
 
   return (
     <Card>
-      <h1 className="text-4xl mb-3 text-center section-title">
-        Add a product
-      </h1>
+      <h1 className="text-4xl mb-3 text-center section-title">Add a product</h1>
       <form onSubmit={handleSubmit}>
         <Input
           name="label"
@@ -79,16 +77,12 @@ const AddProductPage = () => {
         <AddProductDetails value={details} onChange={setDetails} />
         <FileUpload onSuccess={(url) => setImageUrl(url)} />
 
-        <Button
-          primary
-          className="mt-3"
-          disabled={imageUrl === ""}
-        >
+        <Button primary className="mt-3" disabled={imageUrl === ""}>
           Submit
         </Button>
       </form>
     </Card>
   );
-}
+};
 
 export default AddProductPage;
