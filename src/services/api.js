@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-// export const baseURL = "https://ars-furniture-backend.onrender.com/";
-export const baseURL = "http://localhost:5000";
+export const baseURL = "https://ars-furniture-backend.onrender.com/";
+// export const baseURL = "http://localhost:5000";
 
 const axiosIns  = axios.create({ baseURL });
 const token = localStorage.getItem('token');
