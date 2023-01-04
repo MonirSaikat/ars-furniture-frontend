@@ -37,7 +37,7 @@ const FileUpload = ({ onSuccess }) => {
   };
 
   return (
-    <div>
+    <div className='mt-3'>
       <div ref={progressRef} className="bg-green-400 h-2 w-0"></div>
       <Input type="file" onInput={fileChange} onChange={handleUpload} />
     </div>
