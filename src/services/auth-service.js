@@ -30,9 +30,7 @@ export const registerUserByEmailAndPassword = async (name, email, password) => {
 export const checkAuth = async (token) => {
   try {
     const data = await api.get('/auth/check', token);
-    return {
-      user: data.user,
-    };
+    return data.user;
   } catch (error) {
 
   }

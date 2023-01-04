@@ -16,7 +16,7 @@ const ReviewPage = () => {
 
     addReivewByUser(formData)
       .then(data => {
-        console.log(data);
+        // console.log(data);
       })
 
     setData({

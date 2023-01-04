@@ -48,7 +48,7 @@ const AuthProvider = ({ children }) => {
       .then(user => {
         handleUser(user);
       })
-  }, [auth]);
+  }, [auth, token]);
 
   const registerUser = (...props) => {
     registerUserByEmailAndPassword(...props)
@@ -90,7 +90,6 @@ const AuthProvider = ({ children }) => {
     const fbAuthProvider = new FacebookAuthProvider();
     signInWithPopup(auth, fbAuthProvider)
       .then((userCredential) => {
-        console.log(userCredential);
       })
       .catch(error => {
         handleError(error);
