@@ -4,38 +4,37 @@ export const baseURL = "https://ars-furniture-backend.onrender.com/";
 // export const baseURL = "http://localhost:5000";
 
 const axiosIns  = axios.create({ baseURL });
-const token = localStorage.getItem('token');
-const config = {};
-const headers = {
-  Authorization: token ? `Bearer ${token}` : ''
-}
+
+const getConfig = (token) => {
+  return {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  };
+};
 
 export const api = {
-  get: async (path, auth = false) => {
-    if(auth) config.headers = headers;
-
-    const resp = await axiosIns.get(path, config);
+  get: async (path, token) => {
+    const resp = await axiosIns.get(path, getConfig(token));
     return await resp.data;
   },
 
-  post: async (path, data, auth = false) => {
-    if(auth) config.headers = headers;
+  post: async (path, data, token) => {
     try {
-      const resp = await axiosIns.post(path, data , config);
+      const resp = await axiosIns.post(path, data , getConfig(token));
       return await resp.data;
     } catch (error) {
       return error;
     }
   },
 
-  put: async (path, data) => {
-    const resp = await axiosIns.post(path, data);
+  put: async (path, data, token) => {
+    const resp = await axiosIns.post(path, data, getConfig(token));
     return await resp.data;
   },
 
-  delete: async(path, auth = false) => {
-    if(auth) config.headers = headers;
-    const resp = await axiosIns.delete(path);
+  delete: async(path) => {
+    const resp = await axiosIns.delete(path, getConfig(token));
     return resp.data;
   }
 };

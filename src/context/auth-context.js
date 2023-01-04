@@ -1,5 +1,3 @@
-import { createContext, useEffect, useState } from 'react';
-import { useLocalStorage } from '../hooks/use-localstorage';
 import {
   getAuth,
   signInWithPopup,
@@ -7,18 +5,23 @@ import {
   FacebookAuthProvider,
   updateProfile,
 } from 'firebase/auth';
+import { createContext, useEffect, useState } from 'react';
+import { useLocalStorage } from '../hooks/use-localstorage';
 import { useNavigate } from 'react-router-dom';
 import { handleSuccess, handleError } from "../utils";
 import Loader from '../components/Loader';
-import { checkAuth, loginUserByEmailAndPassword, registerUserByEmailAndPassword } from '../services/auth-service';
+import {
+  checkAuth,
+  loginUserByEmailAndPassword,
+  registerUserByEmailAndPassword
+} from '../services/auth-service';
 
 export const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
   const [loggedIn, setLoggedIn] = useState(false);
   const [checkingAuth, setCheckingAuth] = useState(true);
-  const [token, setToken] = useState(null);
-  const [savedToken, setSavedToken] = useLocalStorage('token');
+  const [token, setToken] = useLocalStorage('token');
   const [user, setUser] = useState(null);
   const auth = getAuth();
   const navigate = useNavigate();
@@ -41,11 +44,7 @@ const AuthProvider = ({ children }) => {
       setCheckingAuth(false);
     };
 
-    // set token from local storage
-    if(savedToken) setToken(savedToken);
-
-    // onAuthStateChanged(auth, handleUser);
-    checkAuth()
+    checkAuth(token)
       .then(user => {
         handleUser(user);
       })
@@ -53,35 +52,18 @@ const AuthProvider = ({ children }) => {
 
   const registerUser = (...props) => {
     registerUserByEmailAndPassword(...props)
-      .then(user => {
-        console.log(user);
+      .then(({user, token}) => {
+        configUser(user);
+        setToken(token);
       });
-    // createUserWithEmailAndPassword(auth, email, password)
-    //   .then((userCredential) => {
-    //     const user = userCredential.user;
-    //     updateUser({name: name});
-    //     configUser({name: user.displayName, email: user.email}, 'You are now registered!');
-    //     navigate("/dashboard");
-    //   })
-    //   .catch((error) => {
-    //     handleError(error);
-    //   });
   };
 
   const loginUser = (email, password) => {
     loginUserByEmailAndPassword(email, password)
-      .then(({ user }) => {
+      .then(({ user, token }) => {
         configUser(user);
+        setToken(token);
       });
-    // signInWithEmailAndPassword(auth, email, password)
-    //   .then((userCredential) => {
-    //     const user = userCredential.user;
-    //     configUser(user, 'You are now logged in!');
-    //     navigate('/dashboard');
-    //   })
-    //   .catch((error) => {
-    //     handleError(error);
-    //   });
   };
 
   const loginWithGoogle = () => {
@@ -89,7 +71,14 @@ const AuthProvider = ({ children }) => {
     signInWithPopup(auth, googleAuthProvider)
       .then((userCredential) => {
         const user = userCredential.user;
-        configUser({name: user.displayName, email: user.email}, "You are now logged in!");
+        configUser(
+          {
+            name: user.displayName,
+            email: user.email
+          },
+          "You are now logged in!"
+        );
+
         navigate('/dashboard');
       })
       .catch((error) => {
@@ -147,7 +136,6 @@ const AuthProvider = ({ children }) => {
 
   return (
     <AuthContext.Provider value={data}>
-      {/* todo: add an awesome global  */}
       {checkingAuth ? <Loader /> : children}
     </AuthContext.Provider>
   );
