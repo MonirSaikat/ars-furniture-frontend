@@ -42,7 +42,7 @@ const Navbar = () => {
 
   const renderLinks = links.map((link) => {
     return (
-      <li key={link.path} className='mx-3 my-2 md:my-0'>
+      <li key={link.path} className='mx-3 my-3 md:my-0'>
         <Link to={link.path} href="#">
           {link.label}
         </Link>
@@ -70,7 +70,7 @@ const Navbar = () => {
 
         <button
           aria-controls='Navbar toggler'
-          className='text-2xl hover:text-gray-200'
+          className='text-2xl hover:text-gray-200 block md:hidden'
           onClick={() => setCollapsed(!collapsed)}
         >
           <AiOutlineMenu />
@@ -78,7 +78,7 @@ const Navbar = () => {
 
         <ul
           ref={menuRef}
-          className={`flex items-center flex-col md:flex-col absolute bg-gray-900 z-20 w-full left-0 top-[70px] ${collapsed ? 'opacity-100 h-auto' : 'opacity-0'} py-5 duration-500`}>
+          className={`flex items-center flex-col md:flex-row absolute md:static bg-gray-900 z-20 w-full md:w-auto left-0 top-[70px] md:top-0 ${collapsed ? 'opacity-100 h-auto' : 'opacity-0'} md:opacity-100 py-5 duration-500`}>
           {renderLinks}
           <li className="ml-4">
             <Button link to={ loggedIn ? "/dashboard" : "/login"} primary>
