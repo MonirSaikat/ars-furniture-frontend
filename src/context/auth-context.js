@@ -1,13 +1,11 @@
 import { createContext, useEffect, useState } from 'react';
+import { useLocalStorage } from '../hooks/use-localstorage';
 import {
   getAuth,
   signInWithPopup,
   GoogleAuthProvider,
   FacebookAuthProvider,
-  onAuthStateChanged,
   updateProfile,
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword
 } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 import { handleSuccess, handleError } from "../utils";
@@ -19,6 +17,8 @@ export const AuthContext = createContext();
 const AuthProvider = ({ children }) => {
   const [loggedIn, setLoggedIn] = useState(false);
   const [checkingAuth, setCheckingAuth] = useState(true);
+  const [token, setToken] = useState(null);
+  const [savedToken, setSavedToken] = useLocalStorage('token');
   const [user, setUser] = useState(null);
   const auth = getAuth();
   const navigate = useNavigate();
@@ -40,6 +40,9 @@ const AuthProvider = ({ children }) => {
       configUser(user);
       setCheckingAuth(false);
     };
+
+    // set token from local storage
+    if(savedToken) setToken(savedToken);
 
     // onAuthStateChanged(auth, handleUser);
     checkAuth()
@@ -139,6 +142,7 @@ const AuthProvider = ({ children }) => {
     updateUser,
     loginUser,
     loginWithFacebook,
+    token
   };
 
   return (
