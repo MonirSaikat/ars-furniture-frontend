@@ -75,13 +75,13 @@ const Footer = () => {
   );
 
   const renderLogoAddress = (
-    <div className="flex mb-3">
+    <div className="flex flex-col md:flex-row mb-3">
       <img
         className="w-16 mb-3 rounded-full"
         src="/images/logo.png"
         alt="Logo"
       />
-      <div className="ml-3">
+      <div className="ml-0 md:ml-3">
         <h2 className="text-3xl text-white">
           <strong>ARS</strong> Furniture
         </h2>
