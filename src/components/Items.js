@@ -4,6 +4,7 @@ import Button from "./Button";
 import { handleError } from "../utils";
 import { useCart } from "../hooks/use-cart";
 import Loader from './Loader';
+import { moneyFormat } from '../utils/helper';
 
 const RenderItems = ({ products, renderNumbers }) => {
   const { addToCart } = useCart();
@@ -22,7 +23,7 @@ const RenderItems = ({ products, renderNumbers }) => {
         <p className="text-xl  my-5">{product.label}</p>
         <div className="my-5">
           <p className="text-sm font-light">Start From</p>
-          <p className="font-bold">{product.price} USD</p>
+          <p className="font-bold">{moneyFormat(product.price)} USD</p>
         </div>
         <div className="inline-flex justify-center">
           <Button
