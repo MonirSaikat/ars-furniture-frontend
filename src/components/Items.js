@@ -3,6 +3,7 @@ import { getAllProducts } from "../services/product-service";
 import Button from "./Button";
 import { handleError } from "../utils";
 import { useCart } from "../hooks/use-cart";
+import Loader from './Loader';
 
 const RenderItems = ({ products, renderNumbers }) => {
   const { addToCart } = useCart();
@@ -70,10 +71,13 @@ const Items = ({ title, featured }) => {
     <div className="py-8">
       <div className="container mx-auto px-4 md:px-0">
         <h2 className="section-title">{title}</h2>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 sm:grid-cols-2 gap-5 text-center">
-          <RenderItems products={products} renderNumbers={renderNumbers} />
-        </div>
+        {
+          fetching ?
+            <Loader /> : (
+              <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 sm:grid-cols-2 gap-5 text-center">
+                <RenderItems products={products} renderNumbers={renderNumbers} />
+              </div>)
+        }
       </div>
     </div>
   );
