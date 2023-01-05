@@ -7,6 +7,7 @@ import { handleError } from "../../utils";
 import Loader from "../../components/Loader";
 import { useCart } from "../../hooks/use-cart";
 import parse from "html-react-parser";
+import { moneyFormat } from '../../utils/helper';
 
 const ProductDetailsPage = () => {
   const [product, setProduct] = useState(null);
@@ -56,7 +57,7 @@ const ProductDetailsPage = () => {
           <h2 className="text-3xl">{product.label}</h2>
           <div className="my-3">
             <p className="text-sm font-light mb-2">
-              Unit price: {product.price} usd
+              Unit price: {moneyFormat(product.price)} usd
             </p>
             {parse(product.details)}
             <p className="text-sm font-light mb-2">Color: N/A</p>
