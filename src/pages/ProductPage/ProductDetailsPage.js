@@ -63,12 +63,12 @@ const ProductDetailsPage = () => {
             <p className="text-sm font-light mb-2">Color: N/A</p>
           </div>
 
-          <div className="grid grid-cols-5">
+          <div className="grid md:grid-cols-5">
             <Input
               type="number"
               min="1"
               placeholder="Quantity"
-              className="inline"
+              className="inline mb-2 md:mb-0"
               value={quantity}
               onChange={handleQuantityChange}
             />
