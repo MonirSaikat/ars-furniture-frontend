@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useCart } from "../hooks/use-cart";
 import Button from "./Button";
+import { moneyFormat } from '../utils/helper';
 
 const CartItem = ({ cart }) => {
   const { removeFromCart, getItem, updateCart } = useCart();
@@ -48,7 +49,7 @@ const CartItem = ({ cart }) => {
       </div>
       <div>
         <span className="md:hidden">Price : </span>
-        ${cart.price}
+        ${moneyFormat(cart.price)}
       </div>
     </div>
   );

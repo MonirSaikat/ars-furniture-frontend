@@ -2,6 +2,7 @@ import React from "react";
 import { useCart } from "../hooks/use-cart";
 import CartSubtotal from "../components/CartSubtotal";
 import CartItem from "../components/CartItem";
+import { moneyFormat } from '../utils/helper';
 
 const CartPage = () => {
   const { cartState, subtotalPrice } = useCart();
@@ -19,7 +20,7 @@ const CartPage = () => {
   const renderFooter = (
     <footer className="flex justify-end">
       <p className="text-xl">
-        Subtotal ({cartState.length} items): ${subtotalPrice}
+        Subtotal ({cartState.length} items): ${moneyFormat(subtotalPrice)}
       </p>
     </footer>
   );
