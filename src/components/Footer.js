@@ -51,10 +51,10 @@ const Footer = () => {
         <Link
           to={link.path}
           key={link.path}
-          className="flex items-center text-gray-400 text-sm capitalize my-3"
+          className="flex items-center text-gray-300 text-sm capitalize my-3"
         >
-          <BsChevronRight className="mr-2" />
-          <span>{link.label}</span>
+          <BsChevronRight className="mr-1" />
+          <span className='hover:underline text-xs md:text-sm'>{link.label}</span>
         </Link>
       );
     });
